@@ -338,8 +338,8 @@
         height: 450,
         projection: { type: "mercator", center: [133, -25], scale: 500 },
         data: {
-            url: "https://raw.githubusercontent.com/vega/vega-datasets/main/data/au_state.geojson",
-            format: { type: "geojson", feature: "features" }
+           url: DATA_BASE + "/au_state.geojson",  // local maps file
+           format: { type: "geojson", feature: "features" }
         },
         transform: [
             {
