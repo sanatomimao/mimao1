@@ -37,6 +37,8 @@
         .footer a { color: #E74C3C; text-decoration: none; }
         @media (max-width: 768px) { .container { padding: 1rem; } h1 { font-size: 2rem; } h2 { font-size: 1.5rem; } }
         hr { margin: 2rem 0; border: none; height: 1px; background: linear-gradient(90deg, transparent, #E0E0E0, transparent); }
+        .badge { display: inline-block; background: #E74C3C; color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; margin-right: 0.5rem; }
+        .badge-blue { background: #3498DB; }
     </style>
 </head>
 <body>
@@ -47,8 +49,9 @@
         <p>Who plays? Who watches? Is the money well spent?<br>
         Exploring participation, attendance trends, and funding efficiency in Australian sports</p>
         <div style="margin-top: 1.5rem;">
-            <span style="background: #E74C3C; color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem;"><i class="fas fa-chart-line"></i> 11 Interactive Visualisations</span>
-            <span style="background: #3498DB; color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; margin-left: 0.5rem;"><i class="fas fa-map"></i> 1 Geographic Map</span>
+            <span class="badge"><i class="fas fa-chart-line"></i> 11 Interactive Visualisations</span>
+            <span class="badge badge-blue"><i class="fas fa-map"></i> 1 Geographic Map</span>
+            <span class="badge"><i class="fas fa-calculator"></i> +2 Custom ROI Charts</span>
         </div>
     </div>
 </div>
@@ -80,6 +83,15 @@
                     <h3>📊 AFL Gender Comparison: Participation Declines with Age</h3>
                     <div id="grouped-bar" class="viz-container"></div>
                     <div class="insight-box"><i class="fas fa-lightbulb"></i> <strong>Insight</strong>: For both genders, AFL participation peaks at ages 5-14, then declines sharply. Male participation consistently exceeds female.</div>
+                </div>
+            </div>
+        </div>
+        <div class="pure-g">
+            <div class="pure-u-1 pure-u-md-1-1">
+                <div class="viz-card">
+                    <h3>📊 Gender Participation Gap (Ages 5-14)</h3>
+                    <div id="gender-gap" class="viz-container"></div>
+                    <div class="viz-caption"><i class="fas fa-venus-mars"></i> Negative values = higher female participation (Netball). Positive values = higher male participation (AFL, Soccer).</div>
                 </div>
             </div>
         </div>
@@ -138,7 +150,7 @@
                 <div class="viz-card">
                     <h3>📉 Funding vs Medals: Slope Chart (2019 → 2025)</h3>
                     <div id="slope-chart" class="viz-container"></div>
-                    <div class="viz-caption"><i class="fas fa-arrow-trend-up"></i> Left axis: Funding (AUD million) | Right axis: Medal count.</div>
+                    <div class="viz-caption"><i class="fas fa-arrow-trend-up"></i> Lines connect 2019 to 2025 for each sport. Upward slope = improvement.</div>
                 </div>
             </div>
             <div class="pure-u-1 pure-u-md-1-2">
@@ -146,6 +158,15 @@
                     <h3>🫧 Funding × Medals: Bubble Chart (2025)</h3>
                     <div id="bubble-chart" class="viz-container"></div>
                     <div class="insight-box"><i class="fas fa-chart-scatter"></i> Swimming receives the most funding ($58M) with 22 medals.</div>
+                </div>
+            </div>
+        </div>
+        <div class="pure-g">
+            <div class="pure-u-1 pure-u-md-1-1">
+                <div class="viz-card">
+                    <h3>💰 Funding Efficiency: Medals per $10M (2025)</h3>
+                    <div id="roi-chart" class="viz-container"></div>
+                    <div class="viz-caption"><i class="fas fa-chart-simple"></i> Swimming is most efficient (3.79 medals per $10M), Basketball least efficient (1.5 medals per $10M).</div>
                 </div>
             </div>
         </div>
@@ -191,26 +212,31 @@
             <div class="pure-u-1 pure-u-md-1-2"><h4 style="color: white;">📊 Data Sources</h4><ul style="list-style: none;"><li>• Australian Sports Commission - AusPlay Survey</li><li>• Australian Bureau of Statistics</li><li>• AFL / Cricket Australia Annual Reports</li></ul></div>
         </div>
         <hr style="margin: 2rem 0; background: #2C3E50;">
-        <div class="pure-g" style="font-size: 0.85rem;"><div class="pure-u-1 pure-u-md-1-2"><i class="far fa-copyright"></i> 2026 Author: FIT2179 Monash University</div><div class="pure-u-1 pure-u-md-1-2" style="text-align: right;"><i class="fas fa-robot"></i> AI Acknowledgement: GitHub Copilot and ChatGPT used for code scaffolding.</div></div>
+        <div class="pure-g" style="font-size: 0.85rem;"><div class="pure-u-1 pure-u-md-1-2"><i class="far fa-copyright"></i> 2026 Author: FIT2179 Monash University</div><div class="pure-u-1 pure-u-md-1-2" style="text-align: right;"><i class="fas fa-robot"></i> AI Acknowledgement: GitHub Copilot and ChatGPT used for code scaffolding and text refinement.</div></div>
     </div>
 </div>
 
 <script>
     // ============================================
-    // DATA URLS - Update with your GitHub raw URLs
+    // DATA URL - Set to './data/' or your GitHub raw URL
     // ============================================
-    // 或者如果数据在 /data 子目录
-       const DATA_BASE = './data';
-    // ============================================
-    // VEGA-LITE SPECIFICATIONS
-    // ============================================
+    const DATA_BASE = './data';
     
+    // Helper for consistent chart configuration
+    const chartConfig = {
+        axis: { labelFontSize: 11, titleFontSize: 12, labelAngle: 0 },
+        legend: { titleFontSize: 11, labelFontSize: 10 },
+        view: { stroke: null }
+    };
+    
+    // ============================================
     // 1. Male Participation Heatmap
+    // ============================================
     const heatmapMale = {
         title: "Male Participation Rate (%)",
         width: "container",
         height: 350,
-        data: { url: DATA_BASE + "age_gender_sport_matrix.csv" },
+        data: { url: DATA_BASE + "/age_gender_sport_matrix.csv" },
         transform: [{ filter: "datum.gender == 'Male'" }],
         mark: "rect",
         encoding: {
@@ -223,20 +249,22 @@
                 { field: "participation_index", title: "Rate (%)", format: ".1f" }
             ]
         },
-        config: { axis: { labelAngle: -45 }, view: { stroke: null } }
+        config: chartConfig
     };
     
+    // ============================================
     // 2. Female Participation Heatmap
+    // ============================================
     const heatmapFemale = {
         title: "Female Participation Rate (%)",
         width: "container",
         height: 350,
-        data: { url: DATA_BASE + "age_gender_sport_matrix.csv" },
+        data: { url: DATA_BASE + "/age_gender_sport_matrix.csv" },
         transform: [{ filter: "datum.gender == 'Female'" }],
         mark: "rect",
         encoding: {
             x: { field: "age_group", type: "ordinal", title: "Age Group", sort: ["5-14", "15-24", "25-34", "35-44", "45-54", "55+"] },
-            y: { field: "sport", type: "nominal", title: "Sport" },
+            y: { field: "sport", type: "nominal", title: "Sport", sort: ["AFL", "Cricket", "Soccer", "Basketball", "Tennis", "Netball", "Rugby League"] },
             color: { field: "participation_index", type: "quantitative", title: "Rate (%)", scale: { scheme: "blues", domain: [0, 90] } },
             tooltip: [
                 { field: "sport", title: "Sport" },
@@ -244,15 +272,17 @@
                 { field: "participation_index", title: "Rate (%)", format: ".1f" }
             ]
         },
-        config: { axis: { labelAngle: -45 }, view: { stroke: null } }
+        config: chartConfig
     };
     
+    // ============================================
     // 3. AFL Grouped Bar Chart
+    // ============================================
     const groupedBar = {
         title: "AFL Participation by Age Group and Gender",
         width: "container",
         height: 400,
-        data: { url: DATA_BASE + "age_gender_sport_matrix.csv" },
+        data: { url: DATA_BASE + "/age_gender_sport_matrix.csv" },
         transform: [{ filter: "datum.sport == 'AFL'" }],
         mark: "bar",
         encoding: {
@@ -264,59 +294,95 @@
                 { field: "gender", title: "Gender" },
                 { field: "participation_index", title: "Rate (%)", format: ".1f" }
             ]
-        }
+        },
+        config: chartConfig
     };
     
-    // 4. Choropleth Map - Using external GeoJSON
-   const choroplethMap = {
-  title: "Dominant Sport by State",
-  width: "container",
-  height: 450,
-  projection: { type: "mercator", center: [133, -25], scale: 500 },
-  data: {
-    url: "https://raw.githubusercontent.com/vega/vega-datasets/main/data/au_state.geojson",
-    format: { type: "geojson", feature: "features" }
-  },
-  transform: [
-    {
-      lookup: "properties.STATE_NAME",
-      from: {
-        data: { url: DATA_BASE + "dominant_sport_by_state.csv" },
-        key: "state",
-        fields: ["sport", "participants", "popularity_index"]
-      }
-    },
-    {
-      calculate: "datum.sport == 'AFL' ? '#D32F2F' : (datum.sport == 'Rugby League' ? '#388E3C' : '#1976D2')",
-      as: "color_value"
-    }
-  ],
-  mark: { type: "geoshape", stroke: "white", strokeWidth: 1.5, tooltip: true },
-  encoding: {
-    color: {
-      field: "color_value",
-      type: "nominal",
-      title: "Dominant Sport",
-      scale: null,
-      legend: {
-        labelExpr: "datum.value == '#D32F2F' ? 'AFL' : (datum.value == '#388E3C' ? 'Rugby League' : 'Rugby Union')"
-      }
-    },
-    tooltip: [
-      { field: "properties.STATE_NAME", type: "nominal", title: "State" },
-      { field: "sport", type: "nominal", title: "Dominant Sport" },
-      { field: "participants", type: "quantitative", title: "Participants", format: ",.0f" }
-    ]
-  },
-  config: { view: { stroke: null } }
-};
+    // ============================================
+    // 4. Gender Gap Chart (Diverging Bar) - CUSTOM
+    // ============================================
+    const genderGap = {
+        title: "Gender Participation Gap (Ages 5-14)",
+        width: "container",
+        height: 350,
+        data: { url: DATA_BASE + "/age_gender_sport_matrix.csv" },
+        transform: [
+            { filter: "datum.age_group == '5-14'" },
+            { calculate: "datum.gender == 'Male' ? datum.participation_index : -datum.participation_index", as: "signed_value" }
+        ],
+        mark: "bar",
+        encoding: {
+            y: { field: "sport", type: "nominal", title: "Sport", sort: ["Netball", "Tennis", "Cricket", "Rugby League", "Basketball", "AFL", "Soccer"] },
+            x: { field: "signed_value", type: "quantitative", title: "Participation Rate (%)", axis: { grid: true, format: "d" } },
+            color: {
+                field: "gender",
+                type: "nominal",
+                title: "Gender",
+                scale: { domain: ["Male", "Female"], range: ["#3498DB", "#E74C3C"] }
+            },
+            tooltip: [
+                { field: "sport", title: "Sport" },
+                { field: "gender", title: "Gender" },
+                { field: "participation_index", title: "Rate (%)", format: ".1f" }
+            ]
+        },
+        config: chartConfig
+    };
     
-    // 5. Stacked Bar Chart - State Sport Popularity
+    // ============================================
+    // 5. Choropleth Map - FIXED with Vega GeoJSON
+    // ============================================
+    const choroplethMap = {
+        title: "Dominant Sport by State",
+        width: "container",
+        height: 450,
+        projection: { type: "mercator", center: [133, -25], scale: 500 },
+        data: {
+            url: "https://raw.githubusercontent.com/vega/vega-datasets/main/data/au_state.geojson",
+            format: { type: "geojson", feature: "features" }
+        },
+        transform: [
+            {
+                lookup: "properties.STATE_NAME",
+                from: {
+                    data: { url: DATA_BASE + "/dominant_sport_by_state.csv" },
+                    key: "state",
+                    fields: ["sport", "participants", "popularity_index"]
+                }
+            },
+            {
+                calculate: "datum.sport == 'AFL' ? '#D32F2F' : (datum.sport == 'Rugby League' ? '#388E3C' : '#1976D2')",
+                as: "color_value"
+            }
+        ],
+        mark: { type: "geoshape", stroke: "white", strokeWidth: 1.5, tooltip: true },
+        encoding: {
+            color: {
+                field: "color_value",
+                type: "nominal",
+                title: "Dominant Sport",
+                scale: null,
+                legend: {
+                    labelExpr: "datum.value == '#D32F2F' ? 'AFL' : (datum.value == '#388E3C' ? 'Rugby League' : 'Rugby Union')"
+                }
+            },
+            tooltip: [
+                { field: "properties.STATE_NAME", type: "nominal", title: "State" },
+                { field: "sport", type: "nominal", title: "Dominant Sport" },
+                { field: "participants", type: "quantitative", title: "Participants", format: ",.0f" }
+            ]
+        },
+        config: { view: { stroke: null } }
+    };
+    
+    // ============================================
+    // 6. Stacked Bar Chart - State Sport Popularity
+    // ============================================
     const stackedBar = {
         title: "Sport Popularity Share by State",
         width: "container",
         height: 450,
-        data: { url: DATA_BASE + "state_sport_popularity.csv" },
+        data: { url: DATA_BASE + "/state_sport_popularity.csv" },
         mark: "bar",
         encoding: {
             y: { field: "state", type: "nominal", title: "State", sort: "-x" },
@@ -327,15 +393,18 @@
                 { field: "sport", title: "Sport" },
                 { field: "share_percent", title: "Share (%)", format: ".1f" }
             ]
-        }
+        },
+        config: chartConfig
     };
     
-    // 6. Streamgraph - Attendance Trends
+    // ============================================
+    // 7. Streamgraph - Attendance Trends
+    // ============================================
     const streamgraph = {
         title: "Attendance Trends by Sport (2019-2025)",
         width: "container",
         height: 400,
-        data: { url: DATA_BASE + "attendance_streamgraph.csv" },
+        data: { url: DATA_BASE + "/attendance_streamgraph.csv" },
         mark: "area",
         encoding: {
             x: { field: "year", type: "temporal", title: "Year", axis: { format: "d" } },
@@ -346,54 +415,72 @@
                 { field: "year", title: "Year" },
                 { field: "attendance_millions", title: "Attendance (M)", format: ".2f" }
             ]
-        }
+        },
+        config: chartConfig
     };
     
-    // 7. Lollipop Chart - Venue Utilisation
+    // ============================================
+    // 8. Lollipop Chart - Venue Utilisation
+    // ============================================
     const lollipop = {
         title: "Venue Capacity Utilisation",
         width: "container",
         height: 400,
-        data: { url: DATA_BASE + "venue_capacity_utilisation.csv" },
-        mark: { type: "point", filled: true, size: 120 },
+        data: { url: DATA_BASE + "/venue_capacity_utilisation.csv" },
+        layer: [
+            { mark: { type: "rule", color: "#ccc" }, encoding: { x: { field: "avg_utilisation_percent", type: "quantitative" }, y: { field: "venue", type: "nominal" } } },
+            { mark: { type: "point", filled: true, size: 120, color: "#1976D2" }, encoding: { x: { field: "avg_utilisation_percent", type: "quantitative" }, y: { field: "venue", type: "nominal" } } }
+        ],
         encoding: {
-            y: { field: "venue", type: "nominal", title: "Venue", sort: "-utilisation" },
-            x: { field: "utilisation", type: "quantitative", title: "Utilisation Rate (%)", scale: { domain: [0, 100] } },
-            color: { value: "#1976D2" },
-            size: { field: "capacity", type: "quantitative", title: "Capacity (thousands)" },
+            y: { field: "venue", type: "nominal", title: "Venue", sort: "-avg_utilisation_percent" },
+            x: { field: "avg_utilisation_percent", type: "quantitative", title: "Utilisation Rate (%)", scale: { domain: [0, 100] } },
             tooltip: [
                 { field: "venue", title: "Venue" },
-                { field: "utilisation", title: "Utilisation (%)", format: ".1f" },
-                { field: "capacity", title: "Capacity (k)" },
-                { field: "attendance", title: "Attendance (M)", format: ".2f" }
+                { field: "avg_utilisation_percent", title: "Utilisation (%)", format: ".1f" },
+                { field: "capacity_thousand", title: "Capacity (k)" },
+                { field: "annual_attendance_millions", title: "Attendance (M)", format: ".2f" }
             ]
-        }
+        },
+        config: chartConfig
     };
     
-    // 8. Slope Chart - Funding vs Medals
+    // ============================================
+    // 9. Slope Chart - Funding vs Medals (FIXED)
+    // ============================================
     const slopeChart = {
         title: "Funding vs Medals (2019 → 2025)",
         width: "container",
         height: 400,
-        data: { url: DATA_BASE + "funding_vs_medals.csv" },
-        transform: [{ fold: ["funding_million_aud", "major_event_medals"], as: ["metric", "value"] }],
-        mark: { type: "line", point: true, strokeWidth: 2 },
-        encoding: {
-            x: { field: "year", type: "ordinal", title: "Year" },
-            y: { field: "value", type: "quantitative", title: "Value" },
-            color: { field: "sport", type: "nominal", title: "Sport" },
-            facet: { field: "metric", type: "nominal", title: "", columns: 2 },
-            tooltip: [{ field: "sport" }, { field: "year" }, { field: "value", format: ".1f" }]
+        data: { url: DATA_BASE + "/funding_vs_medals.csv" },
+        transform: [
+            { fold: ["funding_million_aud", "major_event_medals"], as: ["metric", "value"] }
+        ],
+        facet: { field: "metric", type: "nominal", columns: 2, title: null },
+        spec: {
+            mark: { type: "line", point: { filled: true, size: 80 }, strokeWidth: 2 },
+            encoding: {
+                x: { field: "year", type: "ordinal", title: "Year" },
+                y: { field: "value", type: "quantitative", title: "Value" },
+                color: { field: "sport", type: "nominal", title: "Sport" },
+                tooltip: [
+                    { field: "sport", title: "Sport" },
+                    { field: "year", title: "Year" },
+                    { field: "value", title: "Value", format: ".1f" }
+                ]
+            }
         },
-        resolve: { scale: { y: "independent" } }
+        resolve: { scale: { y: "independent" } },
+        config: chartConfig
     };
     
-    // 9. Bubble Chart - 2025 Funding vs Medals
+    // ============================================
+    // 10. Bubble Chart - 2025 Funding vs Medals
+    // ============================================
     const bubbleChart = {
         title: "2025: Funding vs Medals",
         width: "container",
         height: 400,
-        data: { url: DATA_BASE + "funding_vs_medals.csv" },
+        data: { url: DATA_BASE + "/funding_vs_medals.csv" },
         transform: [{ filter: "datum.year == 2025" }],
         mark: "circle",
         encoding: {
@@ -406,62 +493,111 @@
                 { field: "funding_million_aud", title: "Funding (M)", format: ".1f" },
                 { field: "major_event_medals", title: "Medals" }
             ]
-        }
+        },
+        config: chartConfig
     };
     
-    // 10. Funnel Chart
+    // ============================================
+    // 11. ROI Chart - Funding Efficiency (CUSTOM)
+    // ============================================
+    const roiChart = {
+        title: "Funding Efficiency: Medals per $10M (2025)",
+        width: "container",
+        height: 350,
+        data: { url: DATA_BASE + "/funding_vs_medals.csv" },
+        transform: [
+            { filter: "datum.year == 2025" },
+            { calculate: "datum.major_event_medals / datum.funding_million_aud * 10", as: "medals_per_10m" }
+        ],
+        mark: "bar",
+        encoding: {
+            y: { field: "sport", type: "nominal", title: "Sport", sort: "-x" },
+            x: { field: "medals_per_10m", type: "quantitative", title: "Medals per $10M Funding" },
+            color: {
+                field: "medals_per_10m",
+                type: "quantitative",
+                title: "Efficiency",
+                scale: { scheme: "yellowgreenblue", domain: [0, 4] }
+            },
+            tooltip: [
+                { field: "sport" },
+                { field: "funding_million_aud", title: "Funding (M)", format: ".0f" },
+                { field: "major_event_medals", title: "Medals" },
+                { field: "medals_per_10m", title: "Medals / $10M", format: ".2f" }
+            ]
+        },
+        config: chartConfig
+    };
+    
+    // ============================================
+    // 12. Funnel Chart
+    // ============================================
     const funnel = {
         title: "Fan Conversion Funnel",
         width: "container",
         height: 350,
-        data: { url: DATA_BASE + "sports_fan_funnel.csv" },
+        data: { url: DATA_BASE + "/sports_fan_funnel.csv" },
         mark: "bar",
         encoding: {
-            y: { field: "stage", type: "nominal", title: "Stage", sort: { field: "percent", order: "descending" } },
-            x: { field: "percent", type: "quantitative", title: "Percentage of Audience (%)", scale: { domain: [0, 100] } },
-            color: { condition: { test: "datum.stage == 'Membership'", value: "#D32F2F" }, value: "#1976D2" },
+            y: { field: "stage", type: "nominal", title: "Stage", sort: { field: "percent_of_audience", order: "descending" } },
+            x: { field: "percent_of_audience", type: "quantitative", title: "Percentage of Audience (%)", scale: { domain: [0, 100] } },
+            color: {
+                condition: { test: "datum.stage == 'Membership'", value: "#D32F2F" },
+                value: "#1976D2"
+            },
             tooltip: [
                 { field: "stage", title: "Stage" },
                 { field: "description", title: "Description" },
-                { field: "percent", title: "Percentage (%)", format: ".1f" }
+                { field: "percent_of_audience", title: "Percentage (%)", format: ".1f" }
             ]
-        }
+        },
+        config: { ...chartConfig, bar: { binSpacing: 5 } }
     };
     
-    // 11. Participation Pathways Chart
+    // ============================================
+    // 13. Alluvial-style Participation Pathways
+    // ============================================
     const alluvial = {
-        title: "Participation Pathways",
+        title: "Participation Pathways: Entry to Outcome",
         width: "container",
         height: 400,
-        data: { url: DATA_BASE + "participation_pathways.csv" },
+        data: { url: DATA_BASE + "/participation_pathways.csv" },
         mark: "bar",
         encoding: {
             x: { field: "entry_point", type: "nominal", title: "Entry Point", axis: { labelAngle: -20 } },
             y: { field: "percent", type: "quantitative", title: "Percentage (%)" },
             color: { field: "outcome", type: "nominal", title: "Outcome" },
-            column: { field: "sport", type: "nominal", title: "Sport", header: { labelAngle: 0 } },
+            column: { field: "sport", type: "nominal", title: "Sport", header: { labelAngle: 0, labelFontSize: 11 } },
             tooltip: [
                 { field: "sport", title: "Sport" },
                 { field: "entry_point", title: "Entry Point" },
                 { field: "outcome", title: "Outcome" },
                 { field: "percent", title: "Percentage (%)", format: ".1f" }
             ]
-        }
+        },
+        config: chartConfig
     };
     
+    // ============================================
     // Render all charts
+    // ============================================
     window.addEventListener('load', function() {
         vegaEmbed('#heatmap-male', heatmapMale).catch(console.warn);
         vegaEmbed('#heatmap-female', heatmapFemale).catch(console.warn);
         vegaEmbed('#grouped-bar', groupedBar).catch(console.warn);
+        vegaEmbed('#gender-gap', genderGap).catch(console.warn);
         vegaEmbed('#choropleth-map', choroplethMap).catch(console.warn);
         vegaEmbed('#stacked-bar', stackedBar).catch(console.warn);
         vegaEmbed('#streamgraph', streamgraph).catch(console.warn);
         vegaEmbed('#lollipop', lollipop).catch(console.warn);
         vegaEmbed('#slope-chart', slopeChart).catch(console.warn);
         vegaEmbed('#bubble-chart', bubbleChart).catch(console.warn);
+        vegaEmbed('#roi-chart', roiChart).catch(console.warn);
         vegaEmbed('#funnel', funnel).catch(console.warn);
         vegaEmbed('#alluvial', alluvial).catch(console.warn);
+        
+        // Log success
+        console.log('All charts rendered. Total visualisations: 13 (including custom ROI and gender gap)');
     });
 </script>
 </body>
