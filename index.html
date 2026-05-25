@@ -344,12 +344,12 @@ const choroplethMap = {
         scale: 900
     },
     data: {
-        url: DATA_BASE + "/states.geojson",
+        url: DATA_BASE + "/states.json",
         format: { type: "geojson", feature: "states" }
     },
     transform: [
         {
-            lookup: "id",  // 取决于GeoJSON中的属性字段名
+            lookup: "id",  
             from: {
                 data: { url: DATA_BASE + "/dominant_sport_by_state.csv" },
                 key: "state_code",
