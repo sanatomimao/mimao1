@@ -547,8 +547,65 @@
         config: chartConfig
     };
 
-    // 5. Choropleth Map - FIXED with Inline GeoJSON
-   .
+    // 
+  // ============================================
+// 5. Choropleth Map - FIXED with Inline GeoJSON
+// ============================================
+const choroplethMap = {
+  title: "🇦🇺 澳大利亚各州主导体育项目",
+  width: "container",
+  height: 500,
+  projection: {
+    type: "mercator",
+    center: [133, -25],
+    scale: 450,
+    rotate: [0, 0, 0]
+  },
+  data: {
+    url: "https://cdn.jsdelivr.net/npm/vega-datasets@2.0.0/data/au_state.geojson",
+    format: { type: "geojson", feature: "features" }
+  },
+  transform: [
+    {
+      lookup: "properties.STATE_NAME",
+      from: {
+        data: { url: DATA_BASE + "/dominant_sport_by_state.csv" },
+        key: "state",
+        fields: ["sport", "participants", "popularity_index"]
+      }
+    }
+  ],
+  mark: {
+    type: "geoshape",
+    stroke: "white",
+    strokeWidth: 1.5,
+    tooltip: true
+  },
+  encoding: {
+    color: {
+      field: "sport",
+      type: "nominal",
+      title: "主导体育项目",
+      scale: {
+        domain: ["AFL", "Rugby League", "Rugby Union"],
+        range: ["#E74C3C", "#27AE60", "#3498DB"]
+      },
+      legend: {
+        title: "主导体育项目",
+        labelExpr: "datum.label == 'AFL' ? '澳式足球' : (datum.label == 'Rugby League' ? '联盟式橄榄球' : '联合式橄榄球')"
+      }
+    },
+    tooltip: [
+      { field: "properties.STATE_NAME", type: "nominal", title: "州/领地" },
+      { field: "sport", type: "nominal", title: "主导体育项目" },
+      { field: "participants", type: "quantitative", title: "参与人数", format: ",.0f" }
+    ]
+  },
+  config: {
+    view: { stroke: null },
+    legend: { titleFontSize: 12, labelFontSize: 11 }
+  }
+};
 
     // 6. Stacked Bar
     const stackedBar = {
