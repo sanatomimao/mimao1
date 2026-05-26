@@ -268,14 +268,14 @@
     };
     
    // 4. CHOROPLETH MAP - USING PUBLIC AUSTRALIAN TOPOJSON
-// Using Natural Earth Data for Australian states (public domain)
+   // Using Natural Earth Data for Australian states (public domain)
 const choroplethSpec = {
     title: "Dominant Sport by State",
     width: "container",
     height: 450,
     projection: {type: "mercator", center: [135, -25], scale: 450},
     data: {
-        url: DATA_BASE + "data/aus_state.geojson",
+         data: { url: DATA_BASE + "aus_state.geojson",
         format: {type: "geojson", property: "features"}
     },
     transform: [
