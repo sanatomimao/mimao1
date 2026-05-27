@@ -304,11 +304,18 @@ const groupedBar={$schema:"https://vega.github.io/schema/vega-lite/v5.json",
                   title:"Gender"},{field:"participation_index",title:"Rate (%)",format:".1f"}]},config:CFG};
 
 // 5. Choropleth Map with REAL GeoJSON URL
-const choroplethMap={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Dominant Sport by State",width:"container",height:450,
-                     projection:{type:"mercator",center:[134,-28],scale:450},
-                     data:{url:"https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australian-states.json",
-                     format:{type:"json",property:"features"}},transform:[{lookup:"properties.STATE_NAME",
-                     from:{data:{url:"data/dominant_sport_by_state.csv",format:{type:"csv"}},key:"state",fields:["sport","participants","popularity_index"]}},{calculate:"datum.sport==null?'No Data':datum.sport",as:"sport_display"}],mark:{type:"geoshape",stroke:"white",strokeWidth:1.5},encoding:{color:{field:"sport_display",type:"nominal",title:"Dominant Sport",scale:{domain:["AFL","Rugby League","Rugby Union","No Data"],range:["#D32F2F","#388E3C","#1976D2","#CCCCCC"]},legend:{orient:"bottom",titleFontSize:12}},tooltip:[{field:"properties.STATE_NAME",type:"nominal",title:"State"},{field:"sport_display",type:"nominal",title:"Dominant Sport"},{field:"participants",type:"quantitative",title:"Participants",format:","},{field:"popularity_index",type:"quantitative",title:"Popularity Index"}]},config:{view:{stroke:null}}};
+const choroplethMap={
+      $schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Dominant Sport by State",width:"container",height:450,
+      projection: {
+      type: "azimuthalEqualArea", 
+      center: [133, -25],
+      scale: 500,
+      rotate: [0, 0, 0]
+      }
+      data:{url:"https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australian-states.json",
+      format:{type:"json",property:"features"}},
+      transform:[{lookup:"properties.STATE_NAME",from:{data:{url:"data/dominant_sport_by_state.csv",format:{type:"csv"}},key:"state",fields:["sport","participants","popularity_index"]}},{calculate:"datum.sport==null?'No Data':datum.sport",as:"sport_display"}],
+      mark:{type:"geoshape",stroke:"white",strokeWidth:1.5},encoding:{color:{field:"sport_display",type:"nominal",title:"Dominant Sport",scale:{domain:["AFL","Rugby League","Rugby Union","No Data"],range:["#D32F2F","#388E3C","#1976D2","#CCCCCC"]},legend:{orient:"bottom",titleFontSize:12}},tooltip:[{field:"properties.STATE_NAME",type:"nominal",title:"State"},{field:"sport_display",type:"nominal",title:"Dominant Sport"},{field:"participants",type:"quantitative",title:"Participants",format:","},{field:"popularity_index",type:"quantitative",title:"Popularity Index"}]},config:{view:{stroke:null}}};
 
 // 6. Stacked Bar
 const stackedBar={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Sport Popularity Share by State",width:"container",
