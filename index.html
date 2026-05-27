@@ -35,7 +35,6 @@ h3{font-size:clamp(1rem,2vw,1.25rem);margin-bottom:0.75rem;color:#2C3E50;font-we
 .viz-card{background:var(--card-bg);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:var(--shadow);transition:all 0.3s ease;border:1px solid rgba(0,0,0,0.04)}
 .viz-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:rgba(231,76,60,0.1)}
 .viz-container{min-height:350px;width:100%}
-.viz-container-small{min-height:300px;width:100%}
 .viz-caption{font-size:0.85rem;color:#7F8C8D;margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid #ECF0F1}
 .insight-box{background:linear-gradient(135deg,#FFF5F0 0%,#FFF 100%);border-left:4px solid var(--accent);padding:1rem 1.5rem;margin:1rem 0;border-radius:0 12px 12px 0;font-size:0.95rem;color:#5A3A2E;box-shadow:0 2px 8px rgba(231,76,60,0.08)}
 .insight-box i{color:var(--accent);margin-right:0.5rem}
@@ -51,9 +50,6 @@ h3{font-size:clamp(1rem,2vw,1.25rem);margin-bottom:0.75rem;color:#2C3E50;font-we
 .footer{background:var(--primary);color:#BDC3C7;padding:3rem 2rem;margin-top:4rem;border-radius:16px 16px 0 0}
 .footer a{color:var(--accent);text-decoration:none}
 .footer h3,.footer h4{color:white;border-left:none;padding-left:0}
-.filter-indicator{text-align:center;margin-top:1rem;padding:0.5rem;background:#f0f4f8;border-radius:30px;display:inline-block;width:auto;margin-left:auto;margin-right:auto}
-.filter-indicator span{font-weight:600;color:var(--accent)}
-.comparison-note{background:#FFF8E1;border-left:4px solid #FFC107;padding:0.75rem 1rem;margin:0.5rem 0 1rem 0;border-radius:0 8px 8px 0;font-size:0.85rem}
 @media(max-width:768px){.container{padding:1rem}.viz-card{padding:1rem}.hero{padding:2.5rem 0.5rem 2rem}.controls{gap:0.3rem}.ctrl-btn{padding:0.4rem 0.7rem;font-size:0.8rem}}
 ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#f1f1f1}::-webkit-scrollbar-thumb{background:#c1c1c1;border-radius:4px}::-webkit-scrollbar-thumb:hover{background:#a8a8a8}
 </style>
@@ -64,21 +60,18 @@ h3{font-size:clamp(1rem,2vw,1.25rem);margin-bottom:0.75rem;color:#2C3E50;font-we
 <h1>🏏 Australian Sports Culture</h1>
 <p>Who plays? Who watches? Is the money well spent?<br>An interactive data story exploring participation, attendance, and funding efficiency across Australia</p>
 <div class="controls" id="sportControls">
-<button class="ctrl-btn active" data-sport="all">📊 All Sports</button>
-<button class="ctrl-btn" data-sport="AFL">🏉 AFL</button>
-<button class="ctrl-btn" data-sport="Cricket">🏏 Cricket</button>
-<button class="ctrl-btn" data-sport="Soccer">⚽ Soccer</button>
-<button class="ctrl-btn" data-sport="Basketball">🏀 Basketball</button>
-<button class="ctrl-btn" data-sport="Tennis">🎾 Tennis</button>
-<button class="ctrl-btn" data-sport="Netball">🏐 Netball</button>
-<button class="ctrl-btn" data-sport="Rugby League">🏉 Rugby League</button>
-</div>
-<div id="filterIndicator" class="filter-indicator" style="display:none">
-<i class="fas fa-filter"></i> Currently viewing: <span id="activeFilter">All Sports</span>
+<button class="ctrl-btn active" data-sport="all">All Sports</button>
+<button class="ctrl-btn" data-sport="AFL">AFL</button>
+<button class="ctrl-btn" data-sport="Cricket">Cricket</button>
+<button class="ctrl-btn" data-sport="Soccer">Soccer</button>
+<button class="ctrl-btn" data-sport="Basketball">Basketball</button>
+<button class="ctrl-btn" data-sport="Tennis">Tennis</button>
+<button class="ctrl-btn" data-sport="Netball">Netball</button>
+<button class="ctrl-btn" data-sport="Rugby League">Rugby League</button>
 </div>
 <div style="margin-top:1rem">
-<span class="badge"><i class="fas fa-chart-line"></i> 14 Interactive Visualisations</span>
-<span class="badge badge-blue"><i class="fas fa-map"></i> Albers Projection Map</span>
+<span class="badge"><i class="fas fa-chart-line"></i> 12 Interactive Visualisations</span>
+<span class="badge badge-blue"><i class="fas fa-map"></i> Real Geographic Map</span>
 <span class="badge badge-green"><i class="fas fa-calculator"></i> Custom ROI Analysis</span>
 <span class="badge badge-purple"><i class="fas fa-filter"></i> Cross-Chart Filtering</span>
 </div>
@@ -93,14 +86,14 @@ h3{font-size:clamp(1rem,2vw,1.25rem);margin-bottom:0.75rem;color:#2C3E50;font-we
 <div class="pure-u-1 pure-u-md-1-2">
 <div class="viz-card">
 <h3><i class="fas fa-mars" style="color:#3498DB"></i> Male Participation Heatmap</h3>
-<div id="heatmap-male" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading data...</span></div></div>
+<div id="heatmap-male" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
 <div class="viz-caption"><i class="fas fa-info-circle"></i> Colour intensity shows participation rate. Hover for exact values.</div>
 </div>
 </div>
 <div class="pure-u-1 pure-u-md-1-2">
 <div class="viz-card">
 <h3><i class="fas fa-venus" style="color:#E74C3C"></i> Female Participation Heatmap</h3>
-<div id="heatmap-female" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading data...</span></div></div>
+<div id="heatmap-female" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
 <div class="viz-caption"><i class="fas fa-info-circle"></i> Netball reaches 79% among girls aged 5-14 — the highest female rate.</div>
 </div>
 </div>
@@ -109,15 +102,15 @@ h3{font-size:clamp(1rem,2vw,1.25rem);margin-bottom:0.75rem;color:#2C3E50;font-we
 <div class="pure-u-1 pure-u-md-1-2">
 <div class="viz-card">
 <h3><i class="fas fa-chart-bar" style="color:var(--accent-orange)"></i> Gender Gap by Sport (Ages 5-14)</h3>
-<div id="gender-gap" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading data...</span></div></div>
+<div id="gender-gap" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
 <div class="insight-box"><i class="fas fa-lightbulb"></i> <strong>Insight:</strong> Netball shows the largest gender gap favouring females. AFL and Soccer favour males by ~10 percentage points.</div>
 </div>
 </div>
 <div class="pure-u-1 pure-u-md-1-2">
 <div class="viz-card">
 <h3><i class="fas fa-chart-column" style="color:var(--accent)"></i> AFL Participation by Age & Gender</h3>
-<div id="grouped-bar" class="viz-container-small"><div class="loading"><i class="fas fa-spinner"></i><span>Loading data...</span></div></div>
-<div class="insight-box-blue"><i class="fas fa-chart-line"></i> Participation peaks at ages 5-14 (80% male, 71% female), then declines by over 50% by age 55+.</div>
+<div id="grouped-bar" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+<div class="insight-box-blue"><i class="fas fa-chart-line"></i> Participation peaks at ages 5-14, then declines by over 50% by age 55+.</div>
 </div>
 </div>
 </div>
@@ -129,7 +122,7 @@ h3{font-size:clamp(1rem,2vw,1.25rem);margin-bottom:0.75rem;color:#2C3E50;font-we
 <div class="pure-g">
 <div class="pure-u-1 pure-u-md-2-3">
 <div class="viz-card">
-<h3><i class="fas fa-map-marked-alt" style="color:var(--accent-green)"></i> Dominant Sport by State (Albers Projection)</h3>
+<h3><i class="fas fa-map-marked-alt" style="color:var(--accent-green)"></i> Dominant Sport by State (Real Boundaries)</h3>
 <div id="choropleth-map" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading geographic data...</span></div></div>
 <div class="viz-caption"><i class="fas fa-mouse-pointer"></i> Hover for participant numbers. Uses real Australian state boundaries with Albers projection.</div>
 </div>
@@ -137,7 +130,7 @@ h3{font-size:clamp(1rem,2vw,1.25rem);margin-bottom:0.75rem;color:#2C3E50;font-we
 <div class="pure-u-1 pure-u-md-1-3">
 <div class="viz-card">
 <h3><i class="fas fa-chart-pie" style="color:var(--accent-purple)"></i> State Sport Share</h3>
-<div id="stacked-bar" class="viz-container" style="min-height:450px"><div class="loading"><i class="fas fa-spinner"></i><span>Loading data...</span></div></div>
+<div id="stacked-bar" class="viz-container" style="min-height:450px"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
 <div class="insight-box-green"><i class="fas fa-trophy"></i> In TAS, AFL accounts for 43% of all participation — the highest state concentration.</div>
 </div>
 </div>
@@ -151,14 +144,14 @@ h3{font-size:clamp(1rem,2vw,1.25rem);margin-bottom:0.75rem;color:#2C3E50;font-we
 <div class="pure-u-1 pure-u-md-3-5">
 <div class="viz-card">
 <h3><i class="fas fa-wave-square" style="color:var(--accent-blue)"></i> Attendance Streamgraph (2019-2025)</h3>
-<div id="streamgraph" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading data...</span></div></div>
+<div id="streamgraph" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
 <div class="viz-caption"><i class="fas fa-virus"></i> The 2020 trough represents COVID-19 lockdowns. Recovery trajectory varies by sport.</div>
 </div>
 </div>
 <div class="pure-u-1 pure-u-md-2-5">
 <div class="viz-card">
 <h3><i class="fas fa-stadium" style="color:var(--accent-orange)"></i> Major Venue Utilisation</h3>
-<div id="lollipop" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading data...</span></div></div>
+<div id="lollipop" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
 <div class="insight-box"><i class="fas fa-star"></i> MCG leads at 82% utilisation, hosting 3.2M visitors annually.</div>
 </div>
 </div>
@@ -168,44 +161,37 @@ h3{font-size:clamp(1rem,2vw,1.25rem);margin-bottom:0.75rem;color:#2C3E50;font-we
 <div class="section">
 <h2>💰 Act 4: Funding Efficiency & Medal ROI</h2>
 <p style="margin-bottom:1.5rem;color:var(--text-secondary)">Swimming delivers the strongest ROI. Basketball and Tennis show lower efficiency despite increased funding.</p>
-
-<!-- ACT 4 - Split into two separate charts for clarity -->
 <div class="pure-g">
-<div class="pure-u-1 pure-u-md-1-2">
-<div class="viz-card">
-<h3><i class="fas fa-dollar-sign" style="color:var(--accent-green)"></i> Funding Growth (2019 → 2025)</h3>
-<div id="funding-slope" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading data...</span></div></div>
-<div class="viz-caption"><i class="fas fa-chart-line"></i> Swimming received the largest funding increase (+$16M). Basketball funding grew by 43%.</div>
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div class="viz-card">
+            <h3><i class="fas fa-chart-line" style="color:var(--accent-green)"></i> Funding Trajectory (2019 → 2025)</h3>
+            <div id="funding-trajectory" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+            <div class="viz-caption"><i class="fas fa-arrow-trend-up"></i> Tracks funding growth for each sport from 2019 to 2025.</div>
+        </div>
+    </div>
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div class="viz-card">
+            <h3><i class="fas fa-medal" style="color:var(--accent-orange)"></i> Medals Trajectory (2019 → 2025)</h3>
+            <div id="medals-trajectory" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+            <div class="viz-caption"><i class="fas fa-arrow-trend-up"></i> Each line tracks a sport from 2019 to 2025. Steeper upward slope = faster improvement.</div>
+        </div>
+    </div>
 </div>
-</div>
-<div class="pure-u-1 pure-u-md-1-2">
-<div class="viz-card">
-<h3><i class="fas fa-medal" style="color:var(--accent)"></i> Medal Achievement Growth (2019 → 2025)</h3>
-<div id="medal-slope" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading data...</span></div></div>
-<div class="viz-caption"><i class="fas fa-chart-line"></i> Swimming added 6 medals (+38%). Athletics doubled medals from 5 to 9.</div>
-</div>
-</div>
-</div>
-
-<div class="comparison-note">
-<i class="fas fa-chart-simple"></i> <strong>How to read:</strong> Each line connects 2019 (left) to 2025 (right). Upward slope = increase. Steeper slope = faster growth. Compare the two charts to see funding vs medal returns.
-</div>
-
 <div class="pure-g">
-<div class="pure-u-1 pure-u-md-1-2">
-<div class="viz-card">
-<h3><i class="fas fa-circle" style="color:var(--accent-purple)"></i> Funding × Medals Bubble Chart (2025)</h3>
-<div id="bubble-chart" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading data...</span></div></div>
-<div class="insight-box-blue"><i class="fas fa-chart-scatter"></i> Bubble size = funding amount. Position shows medals relative to investment.</div>
-</div>
-</div>
-<div class="pure-u-1 pure-u-md-1-2">
-<div class="viz-card">
-<h3><i class="fas fa-gauge-high" style="color:var(--accent)"></i> Funding Efficiency: Medals per $10M (2025)</h3>
-<div id="roi-chart" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading data...</span></div></div>
-<div class="insight-box-green"><i class="fas fa-medal"></i> Swimming: 3.79 medals per $10M. Sailing: 2.78. Basketball: only 1.50 — lowest efficiency.</div>
-</div>
-</div>
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div class="viz-card">
+            <h3><i class="fas fa-circle" style="color:var(--accent-purple)"></i> Funding × Medals Bubble Chart (2025)</h3>
+            <div id="bubble-chart" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+            <div class="insight-box-blue"><i class="fas fa-chart-scatter"></i> Bubble size = funding amount. Position shows medals relative to investment.</div>
+        </div>
+    </div>
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div class="viz-card">
+            <h3><i class="fas fa-gauge-high" style="color:var(--accent)"></i> Funding Efficiency: Medals per $10M (2025)</h3>
+            <div id="roi-chart" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+            <div class="insight-box-green"><i class="fas fa-medal"></i> Swimming: 3.79 medals per $10M. Sailing: 2.78. Basketball: only 1.50 — lowest efficiency.</div>
+        </div>
+    </div>
 </div>
 </div>
 
@@ -216,14 +202,14 @@ h3{font-size:clamp(1rem,2vw,1.25rem);margin-bottom:0.75rem;color:#2C3E50;font-we
 <div class="pure-u-1 pure-u-md-1-3">
 <div class="viz-card">
 <h3><i class="fas fa-filter" style="color:var(--accent-blue)"></i> Fan Conversion Funnel</h3>
-<div id="funnel" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading data...</span></div></div>
+<div id="funnel" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
 <div class="insight-box"><i class="fas fa-exclamation-circle"></i> <strong>91% leakage:</strong> From 100% awareness to only 9% membership.</div>
 </div>
 </div>
 <div class="pure-u-1 pure-u-md-2-3">
 <div class="viz-card">
 <h3><i class="fas fa-route" style="color:var(--accent-green)"></i> Participation Pathways: Entry → Outcome</h3>
-<div id="alluvial" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading data...</span></div></div>
+<div id="alluvial" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
 <div class="viz-caption"><i class="fas fa-school"></i> School sport is the dominant entry for AFL (36%), Soccer (42%), and Netball (46%).</div>
 </div>
 </div>
@@ -286,334 +272,95 @@ h3{font-size:clamp(1rem,2vw,1.25rem);margin-bottom:0.75rem;color:#2C3E50;font-we
 </div>
 
 <script>
-// Store view references for updating
-const viewRefs = {};
 
-// Chart specifications with data.url pointing to CSV files
-const chartSpecs = {
-    heatmapMale: {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "Male Participation Rate (%)",
-        width: "container",
-        height: 350,
-        data: { url: "data/age_gender_sport_matrix.csv" },
-        transform: [{ filter: "datum.gender === 'Male'" }],
-        mark: "rect",
-        encoding: {
-            x: { field: "age_group", type: "ordinal", title: "Age Group", sort: ["5-14","15-24","25-34","35-44","45-54","55+"] },
-            y: { field: "sport", type: "nominal", title: "Sport", sort: ["AFL","Cricket","Soccer","Basketball","Tennis","Netball","Rugby League"] },
-            color: { field: "participation_index", type: "quantitative", title: "Rate (%)", scale: { scheme: "reds", domain: [0, 90] } },
-            tooltip: [{ field: "sport", title: "Sport" }, { field: "age_group", title: "Age Group" }, { field: "participation_index", title: "Rate (%)", format: ".1f" }]
-        },
-        config: { axis: { labelFontSize: 11, titleFontSize: 12 }, view: { stroke: null } }
-    },
-    heatmapFemale: {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "Female Participation Rate (%)",
-        width: "container",
-        height: 350,
-        data: { url: "data/age_gender_sport_matrix.csv" },
-        transform: [{ filter: "datum.gender === 'Female'" }],
-        mark: "rect",
-        encoding: {
-            x: { field: "age_group", type: "ordinal", title: "Age Group", sort: ["5-14","15-24","25-34","35-44","45-54","55+"] },
-            y: { field: "sport", type: "nominal", title: "Sport", sort: ["AFL","Cricket","Soccer","Basketball","Tennis","Netball","Rugby League"] },
-            color: { field: "participation_index", type: "quantitative", title: "Rate (%)", scale: { scheme: "blues", domain: [0, 90] } },
-            tooltip: [{ field: "sport", title: "Sport" }, { field: "age_group", title: "Age Group" }, { field: "participation_index", title: "Rate (%)", format: ".1f" }]
-        },
-        config: { axis: { labelFontSize: 11, titleFontSize: 12 }, view: { stroke: null } }
-    },
-    genderGap: {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "Gender Participation Gap (Ages 5-14)",
-        width: "container",
-        height: 350,
-        data: { url: "data/age_gender_sport_matrix.csv" },
-        transform: [
-            { filter: "datum.age_group === '5-14'" },
-            { calculate: "datum.gender === 'Male' ? datum.participation_index : -datum.participation_index", as: "signed_value" }
-        ],
-        mark: "bar",
-        encoding: {
-            y: { field: "sport", type: "nominal", title: "Sport", sort: ["Netball","Tennis","Cricket","Rugby League","Basketball","AFL","Soccer"] },
-            x: { field: "signed_value", type: "quantitative", title: "Participation Rate (%)", axis: { grid: true, format: "d" } },
-            color: { field: "gender", type: "nominal", title: "Gender", scale: { domain: ["Male","Female"], range: ["#3498DB","#E74C3C"] } },
-            tooltip: [{ field: "sport", title: "Sport" }, { field: "gender", title: "Gender" }, { field: "participation_index", title: "Rate (%)", format: ".1f" }]
-        }
-    },
-    // Modified grouped bar with reduced height and optimized y-axis
-    groupedBar: {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "AFL Participation by Age Group and Gender",
-        width: "container",
-        height: 300,
-        data: { url: "data/age_gender_sport_matrix.csv" },
-        transform: [{ filter: "datum.sport === 'AFL'" }],
-        mark: "bar",
-        encoding: {
-            x: { field: "age_group", type: "ordinal", title: "Age Group", sort: ["5-14","15-24","25-34","35-44","45-54","55+"] },
-            y: { field: "participation_index", type: "quantitative", title: "Participation Rate (%)", scale: { domain: [0, 90], nice: true }, axis: { tickCount: 5, format: "d", grid: true } },
-            color: { field: "gender", type: "nominal", title: "Gender", scale: { domain: ["Male","Female"], range: ["#3498DB","#E74C3C"] } },
-            tooltip: [{ field: "age_group", title: "Age Group" }, { field: "gender", title: "Gender" }, { field: "participation_index", title: "Rate (%)", format: ".1f" }]
-        },
-        config: { axis: { labelFontSize: 11, titleFontSize: 12 }, view: { stroke: null } }
-    },
-    choroplethMap: {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "Dominant Sport by State",
-        width: "container",
-        height: 450,
-        projection: { type: "albers", center: [134, -28], scale: 800, rotate: [0, 0, 0] },
-        data: { url: "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australian-states.json", format: { type: "json", property: "features" } },
-        transform: [{ lookup: "properties.STATE_NAME", from: { data: { url: "data/dominant_sport_by_state.csv" }, key: "state", fields: ["sport", "participants", "popularity_index"] } }],
-        mark: { type: "geoshape", stroke: "white", strokeWidth: 1.5 },
-        encoding: {
-            color: { field: "sport", type: "nominal", title: "Dominant Sport", scale: { domain: ["AFL","Rugby League","Rugby Union"], range: ["#D32F2F","#388E3C","#1976D2"] }, legend: { orient: "bottom", titleFontSize: 12 } },
-            tooltip: [{ field: "properties.STATE_NAME", type: "nominal", title: "State" }, { field: "sport", type: "nominal", title: "Dominant Sport" }, { field: "participants", type: "quantitative", title: "Participants", format: "," }, { field: "popularity_index", type: "quantitative", title: "Popularity Index" }]
-        },
-        config: { view: { stroke: null } }
-    },
-    stackedBar: {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "Sport Popularity Share by State",
-        width: "container",
-        height: 450,
-        data: { url: "data/state_sport_popularity.csv" },
-        mark: "bar",
-        encoding: {
-            y: { field: "state", type: "nominal", title: "State", sort: "-x" },
-            x: { field: "share_percent", type: "quantitative", title: "Share (%)", stack: "normalize", axis: { format: ".0%" } },
-            color: { field: "sport", type: "nominal", title: "Sport" },
-            tooltip: [{ field: "state", title: "State" }, { field: "sport", title: "Sport" }, { field: "share_percent", title: "Share (%)", format: ".1f" }]
-        }
-    },
-    streamgraph: {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "Attendance Trends by Sport (2019-2025)",
-        width: "container",
-        height: 400,
-        data: { url: "data/attendance_streamgraph.csv" },
-        mark: "area",
-        encoding: {
-            x: { field: "year", type: "temporal", title: "Year", axis: { format: "d" } },
-            y: { field: "attendance_millions", type: "quantitative", title: "Attendance (Millions)", stack: "center" },
-            color: { field: "sport", type: "nominal", title: "Sport" },
-            tooltip: [{ field: "sport", title: "Sport" }, { field: "year", title: "Year", type: "temporal" }, { field: "attendance_millions", title: "Attendance (M)", format: ".2f" }]
-        }
-    },
-    lollipop: {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "Venue Capacity Utilisation",
-        width: "container",
-        height: 400,
-        data: { url: "data/venue_capacity_utilisation.csv" },
-        layer: [
-            { mark: { type: "rule", color: "#ddd" }, encoding: { x: { field: "avg_utilisation_percent", type: "quantitative", title: "Utilisation Rate (%)" }, y: { field: "venue", type: "nominal", sort: "-avg_utilisation_percent" } } },
-            { mark: { type: "point", filled: true, size: 120, color: "#1976D2" }, encoding: { x: { field: "avg_utilisation_percent", type: "quantitative" }, y: { field: "venue", type: "nominal", sort: "-avg_utilisation_percent" } } }
-        ],
-        encoding: {
-            x: { field: "avg_utilisation_percent", type: "quantitative", title: "Utilisation Rate (%)", scale: { domain: [0, 100] } },
-            y: { field: "venue", type: "nominal", title: "Venue", sort: "-avg_utilisation_percent" },
-            tooltip: [{ field: "venue", title: "Venue" }, { field: "avg_utilisation_percent", title: "Utilisation (%)", format: ".1f" }, { field: "capacity_thousand", title: "Capacity (k)" }, { field: "annual_attendance_millions", title: "Attendance (M)", format: ".2f" }]
-        }
-    },
-    // SPLIT: Funding only slope chart
-    fundingSlope: {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "Funding Growth Trajectory (2019 → 2025)",
-        width: "container",
-        height: 380,
-        data: { url: "data/funding_vs_medals.csv" },
-        mark: { type: "line", point: { filled: true, size: 100 }, strokeWidth: 2.5 },
-        encoding: {
-            x: { field: "year", type: "ordinal", title: "Year", axis: { labelFontSize: 12, titleFontSize: 13 } },
-            y: { field: "funding_million_aud", type: "quantitative", title: "Funding (AUD Million)", axis: { grid: true, titleFontSize: 13 } },
-            color: { field: "sport", type: "nominal", title: "Sport", scale: { scheme: "tableau10" }, legend: { orient: "bottom", titleFontSize: 11, labelFontSize: 10, columns: 4 } },
-            tooltip: [{ field: "sport", title: "Sport" }, { field: "year", title: "Year" }, { field: "funding_million_aud", title: "Funding (M AUD)", format: ".0f" }]
-        },
-        config: { axis: { labelFontSize: 11 }, view: { stroke: null } }
-    },
-    // SPLIT: Medals only slope chart
-    medalSlope: {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "Medal Achievement Trajectory (2019 → 2025)",
-        width: "container",
-        height: 380,
-        data: { url: "data/funding_vs_medals.csv" },
-        mark: { type: "line", point: { filled: true, size: 100 }, strokeWidth: 2.5 },
-        encoding: {
-            x: { field: "year", type: "ordinal", title: "Year", axis: { labelFontSize: 12, titleFontSize: 13 } },
-            y: { field: "major_event_medals", type: "quantitative", title: "Medal Count", axis: { grid: true, titleFontSize: 13 } },
-            color: { field: "sport", type: "nominal", title: "Sport", scale: { scheme: "tableau10" }, legend: { orient: "bottom", titleFontSize: 11, labelFontSize: 10, columns: 4 } },
-            tooltip: [{ field: "sport", title: "Sport" }, { field: "year", title: "Year" }, { field: "major_event_medals", title: "Medals" }]
-        },
-        config: { axis: { labelFontSize: 11 }, view: { stroke: null } }
-    },
-    bubbleChart: {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "2025: Funding vs Medals",
-        width: "container",
-        height: 380,
-        data: { url: "data/funding_vs_medals.csv" },
-        transform: [{ filter: "datum.year === 2025" }],
-        mark: "circle",
-        encoding: {
-            x: { field: "funding_million_aud", type: "quantitative", title: "Funding (AUD Million)" },
-            y: { field: "major_event_medals", type: "quantitative", title: "Medal Count" },
-            size: { field: "funding_million_aud", type: "quantitative", legend: null },
-            color: { field: "sport", type: "nominal", title: "Sport", scale: { scheme: "tableau10" } },
-            tooltip: [{ field: "sport" }, { field: "funding_million_aud", title: "Funding (M)", format: ".0f" }, { field: "major_event_medals", title: "Medals" }]
-        },
-        config: { axis: { labelFontSize: 11 }, view: { stroke: null } }
-    },
-    roiChart: {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "Funding Efficiency: Medals per $10M (2025)",
-        width: "container",
-        height: 350,
-        data: { url: "data/funding_vs_medals.csv" },
-        transform: [{ filter: "datum.year === 2025" }, { calculate: "datum.major_event_medals / datum.funding_million_aud * 10", as: "medals_per_10m" }],
-        mark: "bar",
-        encoding: {
-            y: { field: "sport", type: "nominal", title: "Sport", sort: "-x" },
-            x: { field: "medals_per_10m", type: "quantitative", title: "Medals per $10M Funding" },
-            color: { field: "medals_per_10m", type: "quantitative", title: "Efficiency", scale: { scheme: "yellowgreenblue", domain: [0, 4] } },
-            tooltip: [{ field: "sport" }, { field: "funding_million_aud", title: "Funding (M)", format: ".0f" }, { field: "major_event_medals", title: "Medals" }, { field: "medals_per_10m", title: "Medals / $10M", format: ".2f" }]
-        },
-        config: { axis: { labelFontSize: 11 }, view: { stroke: null } }
-    },
-    funnel: {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "Fan Conversion Funnel",
-        width: "container",
-        height: 350,
-        data: { url: "data/sports_fan_funnel.csv" },
-        mark: "bar",
-        encoding: {
-            y: { field: "stage", type: "nominal", title: "Stage", sort: { field: "percent_of_audience", order: "descending" } },
-            x: { field: "percent_of_audience", type: "quantitative", title: "Percentage of Audience (%)", scale: { domain: [0, 100] } },
-            color: { condition: { test: "datum.stage=='Membership'", value: "#D32F2F" }, value: "#1976D2" },
-            tooltip: [{ field: "stage", title: "Stage" }, { field: "description", title: "Description" }, { field: "percent_of_audience", title: "Percentage (%)", format: ".1f" }]
-        }
-    },
-    alluvial: {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "Participation Pathways: Entry to Outcome",
-        width: "container",
-        height: 400,
-        data: { url: "data/participation_pathways.csv" },
-        mark: "bar",
-        encoding: {
-            x: { field: "entry_point", type: "nominal", title: "Entry Point", axis: { labelAngle: -20 } },
-            y: { field: "percent", type: "quantitative", title: "Percentage (%)" },
-            color: { field: "outcome", type: "nominal", title: "Outcome" },
-            column: { field: "sport", type: "nominal", title: "Sport", header: { labelAngle: 0, labelFontSize: 11 } },
-            tooltip: [{ field: "sport", title: "Sport" }, { field: "entry_point", title: "Entry Point" }, { field: "outcome", title: "Outcome" }, { field: "percent", title: "Percentage (%)", format: ".1f" }]
-        }
-    }
-};
 
-// Function to update charts with sport filter
-function updateChartsWithFilter(sport) {
-    const isFiltered = sport !== 'all';
-    
-    const filterIndicator = document.getElementById('filterIndicator');
-    const activeFilterSpan = document.getElementById('activeFilter');
-    if (isFiltered) {
-        filterIndicator.style.display = 'inline-block';
-        activeFilterSpan.textContent = sport;
-    } else {
-        filterIndicator.style.display = 'none';
-    }
-    
-    const filterableChartIds = ['heatmap-male', 'heatmap-female', 'gender-gap', 'grouped-bar'];
-    
-    filterableChartIds.forEach(chartId => {
-        let spec;
-        switch(chartId) {
-            case 'heatmap-male':
-                spec = JSON.parse(JSON.stringify(chartSpecs.heatmapMale));
-                break;
-            case 'heatmap-female':
-                spec = JSON.parse(JSON.stringify(chartSpecs.heatmapFemale));
-                break;
-            case 'gender-gap':
-                spec = JSON.parse(JSON.stringify(chartSpecs.genderGap));
-                break;
-            case 'grouped-bar':
-                spec = JSON.parse(JSON.stringify(chartSpecs.groupedBar));
-                break;
-        }
-        
-        if (spec && isFiltered) {
-            if (!spec.transform) spec.transform = [];
-            spec.transform.push({ filter: `datum.sport === '${sport}'` });
-        } else if (spec && !isFiltered) {
-            if (spec.transform) {
-                spec.transform = spec.transform.filter(t => !t.filter || !t.filter.includes('datum.sport'));
-            }
-        }
-        
-        if (spec && viewRefs[chartId]) {
-            vegaEmbed(`#${chartId}`, spec, { actions: false }).then(res => {
-                viewRefs[chartId] = res;
-            }).catch(err => console.warn(`Failed to update ${chartId}:`, err));
-        }
-    });
-}
+const CFG={axis:{labelFontSize:11,titleFontSize:12,labelAngle:0},legend:{titleFontSize:11,labelFontSize:10},view:{stroke:null}};
 
-// Render all charts
-async function renderAllCharts() {
-    const chartElements = [
-        { id: 'heatmap-male', spec: chartSpecs.heatmapMale },
-        { id: 'heatmap-female', spec: chartSpecs.heatmapFemale },
-        { id: 'gender-gap', spec: chartSpecs.genderGap },
-        { id: 'grouped-bar', spec: chartSpecs.groupedBar },
-        { id: 'choropleth-map', spec: chartSpecs.choroplethMap },
-        { id: 'stacked-bar', spec: chartSpecs.stackedBar },
-        { id: 'streamgraph', spec: chartSpecs.streamgraph },
-        { id: 'lollipop', spec: chartSpecs.lollipop },
-        { id: 'funding-slope', spec: chartSpecs.fundingSlope },
-        { id: 'medal-slope', spec: chartSpecs.medalSlope },
-        { id: 'bubble-chart', spec: chartSpecs.bubbleChart },
-        { id: 'roi-chart', spec: chartSpecs.roiChart },
-        { id: 'funnel', spec: chartSpecs.funnel },
-        { id: 'alluvial', spec: chartSpecs.alluvial }
+// 1. Male Heatmap
+const heatmapMale={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Male Participation Rate (%)",width:"container",height:350,data:{url:"data/age_gender_sport.csv",format:{type:"csv"}},mark:"rect",encoding:{x:{field:"age_group",type:"ordinal",title:"Age Group",sort:["5-14","15-24","25-34","35-44","45-54","55+"]},y:{field:"sport",type:"nominal",title:"Sport",sort:["AFL","Cricket","Soccer","Basketball","Tennis","Netball","Rugby League"]},color:{field:"participation_index",type:"quantitative",title:"Rate (%)",scale:{scheme:"reds",domain:[0,90]}},tooltip:[{field:"sport",title:"Sport"},{field:"age_group",title:"Age Group"},{field:"participation_index",title:"Rate (%)",format:".1f"}]},config:CFG};
+
+// 2. Female Heatmap
+const heatmapFemale={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Female Participation Rate (%)",width:"container",height:350,data:{url:"data/age_gender_sport.csv",format:{type:"csv"}},mark:"rect",encoding:{x:{field:"age_group",type:"ordinal",title:"Age Group",sort:["5-14","15-24","25-34","35-44","45-54","55+"]},y:{field:"sport",type:"nominal",title:"Sport",sort:["AFL","Cricket","Soccer","Basketball","Tennis","Netball","Rugby League"]},color:{field:"participation_index",type:"quantitative",title:"Rate (%)",scale:{scheme:"blues",domain:[0,90]}},tooltip:[{field:"sport",title:"Sport"},{field:"age_group",title:"Age Group"},{field:"participation_index",title:"Rate (%)",format:".1f"}]},config:CFG};
+
+// 3. Gender Gap (Diverging Bar) - CUSTOM
+const genderGap={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Gender Participation Gap (Ages 5-14)",width:"container",height:350,data:{url:"data/age_gender_sport.csv",format:{type:"csv"}},transform:[{filter:"datum.age_group=='5-14'"},{calculate:"datum.gender=='Male' ? datum.participation_index : -datum.participation_index",as:"signed_value"}],mark:"bar",encoding:{y:{field:"sport",type:"nominal",title:"Sport",sort:["Netball","Tennis","Cricket","Rugby League","Basketball","AFL","Soccer"]},x:{field:"signed_value",type:"quantitative",title:"Participation Rate (%)",axis:{grid:true,format:"d"}},color:{field:"gender",type:"nominal",title:"Gender",scale:{domain:["Male","Female"],range:["#3498DB","#E74C3C"]}},tooltip:[{field:"sport",title:"Sport"},{field:"gender",title:"Gender"},{field:"participation_index",title:"Rate (%)",format:".1f"}]},config:CFG};
+
+// 4. Grouped Bar
+const groupedBar={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"AFL Participation by Age Group and Gender",width:"container",height:400,data:{url:"data/age_gender_sport.csv",format:{type:"csv"}},transform:[{filter:"datum.sport=='AFL'"}],mark:{type:"bar",size:20},encoding:{x:{field:"age_group",type:"ordinal",title:"Age Group",sort:["5-14","15-24","25-34","35-44","45-54","55+"],axis:{labelAngle:0}},y:{field:"participation_index",type:"quantitative",title:"Participation Rate (%)",scale:{domain:[0,90],nice:false}},xOffset:{field:"gender",type:"nominal"},color:{field:"gender",type:"nominal",title:"Gender",scale:{domain:["Male","Female"],range:["#3498DB","#E74C3C"]}},tooltip:[{field:"age_group",title:"Age Group"},{field:"gender",title:"Gender"},{field:"participation_index",title:"Rate (%)",format:".1f"}]},config:CFG};
+
+// 5. Choropleth Map with REAL GeoJSON URL
+const choroplethMap={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Dominant Sport by State",width:"container",height:450,projection:{type:"mercator",center:[134,-28],scale:450},data:{url:"https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australian-states.json",format:{type:"json",property:"features"}},transform:[{lookup:"properties.STATE_NAME",from:{data:{url:"data/dominant_sport.csv",format:{type:"csv"}},key:"state",fields:["sport","participants","popularity_index"]}},{calculate:"datum.sport==null?'No Data':datum.sport",as:"sport_display"}],mark:{type:"geoshape",stroke:"white",strokeWidth:1.5},encoding:{color:{field:"sport_display",type:"nominal",title:"Dominant Sport",scale:{domain:["AFL","Rugby League","Rugby Union","No Data"],range:["#D32F2F","#388E3C","#1976D2","#CCCCCC"]},legend:{orient:"bottom",titleFontSize:12}},tooltip:[{field:"properties.STATE_NAME",type:"nominal",title:"State"},{field:"sport_display",type:"nominal",title:"Dominant Sport"},{field:"participants",type:"quantitative",title:"Participants",format:","},{field:"popularity_index",type:"quantitative",title:"Popularity Index"}]},config:{view:{stroke:null}}};
+
+// 6. Stacked Bar
+const stackedBar={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Sport Popularity Share by State",width:"container",height:450,data:{url:"data/state_popularity.csv",format:{type:"csv"}},mark:"bar",encoding:{y:{field:"state",type:"nominal",title:"State",sort:"-x"},x:{field:"share_percent",type:"quantitative",title:"Share (%)",stack:"normalize",axis:{format:".0%"}},color:{field:"sport",type:"nominal",title:"Sport"},tooltip:[{field:"state",title:"State"},{field:"sport",title:"Sport"},{field:"share_percent",title:"Share (%)",format:".1f"}]},config:CFG};
+
+// 7. Streamgraph
+const streamgraph={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Attendance Trends by Sport (2019-2025)",width:"container",height:400,data:{url:"data/attendance.csv",format:{type:"csv"}},mark:"area",encoding:{x:{field:"year",type:"temporal",title:"Year",axis:{format:"d"}},y:{field:"attendance_millions",type:"quantitative",title:"Attendance (Millions)",stack:"center"},color:{field:"sport",type:"nominal",title:"Sport"},tooltip:[{field:"sport",title:"Sport"},{field:"year",title:"Year",type:"temporal"},{field:"attendance_millions",title:"Attendance (M)",format:".2f"}]},config:CFG};
+
+// 8. Lollipop Chart
+const lollipop={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Venue Capacity Utilisation",width:"container",height:400,data:{url:"data/venues.csv",format:{type:"csv"}},layer:[{mark:{type:"rule",color:"#ddd"},encoding:{x:{field:"avg_utilisation_percent",type:"quantitative",title:"Utilisation Rate (%)"},y:{field:"venue",type:"nominal",sort:"-avg_utilisation_percent"}}},{mark:{type:"point",filled:true,size:120,color:"#1976D2"},encoding:{x:{field:"avg_utilisation_percent",type:"quantitative"},y:{field:"venue",type:"nominal",sort:"-avg_utilisation_percent"}}}],encoding:{x:{field:"avg_utilisation_percent",type:"quantitative",title:"Utilisation Rate (%)",scale:{domain:[0,100]}},y:{field:"venue",type:"nominal",title:"Venue",sort:"-avg_utilisation_percent"},tooltip:[{field:"venue",title:"Venue"},{field:"avg_utilisation_percent",title:"Utilisation (%)",format:".1f"},{field:"capacity_thousand",title:"Capacity (k)"},{field:"annual_attendance_millions",title:"Attendance (M)",format:".2f"}]},config:CFG};
+
+// 9a. Funding Trajectory
+const fundingTrajectory={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Funding (AUD Million)",width:"container",height:350,data:{url:"data/funding.csv",format:{type:"csv"}},mark:{type:"line",point:{filled:true,size:80},strokeWidth:2.5},encoding:{x:{field:"year",type:"ordinal",title:"Year"},y:{field:"funding_million_aud",type:"quantitative",title:"Funding (AUD M)"},color:{field:"sport",type:"nominal",title:"Sport"},tooltip:[{field:"sport",title:"Sport"},{field:"year",title:"Year"},{field:"funding_million_aud",title:"Funding (M)",format:".1f"}]},config:CFG};
+
+// 9b. Medals Trajectory
+const medalsTrajectory={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Major Event Medals",width:"container",height:350,data:{url:"data/funding.csv",format:{type:"csv"}},mark:{type:"line",point:{filled:true,size:80},strokeWidth:2.5},encoding:{x:{field:"year",type:"ordinal",title:"Year"},y:{field:"major_event_medals",type:"quantitative",title:"Medal Count"},color:{field:"sport",type:"nominal",title:"Sport"},tooltip:[{field:"sport",title:"Sport"},{field:"year",title:"Year"},{field:"major_event_medals",title:"Medals",format:".0f"}]},config:CFG};
+
+// 10. Bubble Chart
+const bubbleChart={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"2025: Funding vs Medals",width:"container",height:400,data:{url:"data/funding.csv",format:{type:"csv"}},transform:[{filter:"datum.year==2025"}],mark:"circle",encoding:{x:{field:"funding_million_aud",type:"quantitative",title:"Funding (AUD Million)"},y:{field:"major_event_medals",type:"quantitative",title:"Medal Count"},size:{field:"funding_million_aud",type:"quantitative",legend:null},color:{field:"sport",type:"nominal",title:"Sport"},tooltip:[{field:"sport"},{field:"funding_million_aud",title:"Funding (M)",format:".1f"},{field:"major_event_medals",title:"Medals"}]},config:CFG};
+
+// 11. ROI Chart - CUSTOM
+const roiChart={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Funding Efficiency: Medals per $10M (2025)",width:"container",height:350,data:{url:"data/funding.csv",format:{type:"csv"}},transform:[{filter:"datum.year==2025"},{calculate:"datum.major_event_medals / datum.funding_million_aud * 10",as:"medals_per_10m"}],mark:"bar",encoding:{y:{field:"sport",type:"nominal",title:"Sport",sort:"-x"},x:{field:"medals_per_10m",type:"quantitative",title:"Medals per $10M Funding"},color:{field:"medals_per_10m",type:"quantitative",title:"Efficiency",scale:{scheme:"yellowgreenblue",domain:[0,4]}},tooltip:[{field:"sport"},{field:"funding_million_aud",title:"Funding (M)",format:".0f"},{field:"major_event_medals",title:"Medals"},{field:"medals_per_10m",title:"Medals / $10M",format:".2f"}]},config:CFG};
+
+// 12. Funnel Chart
+const funnel={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Fan Conversion Funnel",width:"container",height:350,data:{url:"data/funnel.csv",format:{type:"csv"}},mark:"bar",encoding:{y:{field:"stage",type:"nominal",title:"Stage",sort:{field:"percent_of_audience",order:"descending"}},x:{field:"percent_of_audience",type:"quantitative",title:"Percentage of Audience (%)",scale:{domain:[0,100]}},color:{condition:{test:"datum.stage=='Membership'",value:"#D32F2F"},value:"#1976D2"},tooltip:[{field:"stage",title:"Stage"},{field:"description",title:"Description"},{field:"percent_of_audience",title:"Percentage (%)",format:".1f"}]},config:{...CFG,bar:{binSpacing:5}}};
+
+// 13. Alluvial-style Pathways
+const alluvial={$schema:"https://vega.github.io/schema/vega-lite/v5.json",title:"Participation Pathways: Entry to Outcome",width:"container",height:400,data:{url:"data/pathways.csv",format:{type:"csv"}},mark:"bar",encoding:{x:{field:"entry_point",type:"nominal",title:"Entry Point",axis:{labelAngle:-20}},y:{field:"percent",type:"quantitative",title:"Percentage (%)"},color:{field:"outcome",type:"nominal",title:"Outcome"},column:{field:"sport",type:"nominal",title:"Sport",header:{labelAngle:0,labelFontSize:11}},tooltip:[{field:"sport",title:"Sport"},{field:"entry_point",title:"Entry Point"},{field:"outcome",title:"Outcome"},{field:"percent",title:"Percentage (%)",format:".1f"}]},config:CFG};
+
+// ============================================
+// RENDER ALL CHARTS + INTERACTIVITY
+// ============================================
+window.addEventListener('load', function() {
+    const charts = [
+        { id: '#heatmap-male', spec: heatmapMale },
+        { id: '#heatmap-female', spec: heatmapFemale },
+        { id: '#gender-gap', spec: genderGap },
+        { id: '#grouped-bar', spec: groupedBar },
+        { id: '#choropleth-map', spec: choroplethMap },
+        { id: '#stacked-bar', spec: stackedBar },
+        { id: '#streamgraph', spec: streamgraph },
+        { id: '#lollipop', spec: lollipop },
+        { id: '#funding-trajectory', spec: fundingTrajectory },
+        { id: '#medals-trajectory', spec: medalsTrajectory },
+        { id: '#bubble-chart', spec: bubbleChart },
+        { id: '#roi-chart', spec: roiChart },
+        { id: '#funnel', spec: funnel },
+        { id: '#alluvial', spec: alluvial }
     ];
-    
-    for (const chart of chartElements) {
-        try {
-            const result = await vegaEmbed(`#${chart.id}`, chart.spec, { actions: false });
-            viewRefs[chart.id] = result;
-            console.log(`✓ Rendered: ${chart.id}`);
-        } catch (err) {
-            console.warn(`✗ Failed to render ${chart.id}:`, err);
-            const container = document.querySelector(`#${chart.id}`);
-            if (container) {
-                container.innerHTML = '<div class="loading"><i class="fas fa-exclamation-triangle"></i> Chart failed to load - check CSV files</div>';
-            }
-        }
-    }
-    
-    console.log(`✓ All charts rendered. Total: ${chartElements.length}`);
-}
 
-function setupFilters() {
-    const buttons = document.querySelectorAll('.ctrl-btn');
-    buttons.forEach(btn => {
+    charts.forEach(function(chart) {
+        vegaEmbed(chart.id, chart.spec, { actions: false })
+            .then(function() { console.log('Rendered:', chart.id); })
+            .catch(function(err) { 
+                console.warn('Failed to render', chart.id, err);
+                document.querySelector(chart.id).innerHTML = 
+                    '<div class="loading"><i class="fas fa-exclamation-triangle"></i> Chart failed to load</div>';
+            });
+    });
+
+    console.log('All charts initiated. Total visualisations: 13');
+
+    // Sport filter controls
+    document.querySelectorAll('.ctrl-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-            buttons.forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.ctrl-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             const sport = this.dataset.sport;
-            console.log(`Filtering by sport: ${sport}`);
-            updateChartsWithFilter(sport);
+            console.log('Filter by sport:', sport);
+            // Future enhancement: cross-filter all charts
         });
     });
-}
-
-window.addEventListener('load', () => {
-    renderAllCharts();
-    setupFilters();
 });
 </script>
 </body>
