@@ -695,7 +695,7 @@
         // 1. Male Heatmap
         const heatmapMale = {
             $schema: "https://vega.github.io/schema/vega-lite/v5.json", title: "Male Participation Rate (%)", width: "container", height: 350,
-            data: { url: "data/age_gender_sport.csv", format: { type: "csv" } },
+            data: { url: "data/age_gender_sport_matrix.csv", format: { type: "csv" } },
             mark: "rect",
             encoding: {
                 x: { field: "age_group", type: "ordinal", title: "Age Group", sort: ["5-14", "15-24", "25-34", "35-44", "45-54", "55+"] },
@@ -709,7 +709,7 @@
         // 2. Female Heatmap
         const heatmapFemale = {
             $schema: "https://vega.github.io/schema/vega-lite/v5.json", title: "Female Participation Rate (%)", width: "container", height: 350,
-            data: { url: "data/age_gender_sport.csv", format: { type: "csv" } },
+            data: { url: "data/age_gender_sport_matrix.csv", format: { type: "csv" } },
             mark: "rect",
             encoding: {
                 x: { field: "age_group", type: "ordinal", title: "Age Group", sort: ["5-14", "15-24", "25-34", "35-44", "45-54", "55+"] },
@@ -723,7 +723,7 @@
         // 3. Gender Gap
         const genderGap = {
             $schema: "https://vega.github.io/schema/vega-lite/v5.json", title: "Gender Participation Gap (Ages 5-14)", width: "container", height: 350,
-            data: { url: "data/age_gender_sport.csv", format: { type: "csv" } },
+            data: { url: "data/age_gender_sport_matrix.csv", format: { type: "csv" } },
             transform: [{ filter: "datum.age_group=='5-14'" }, { calculate: "datum.gender=='Male' ? datum.participation_index : -datum.participation_index", as: "signed_value" }],
             mark: "bar",
             encoding: {
@@ -738,7 +738,7 @@
         // 4. Grouped Bar
         const groupedBar = {
             $schema: "https://vega.github.io/schema/vega-lite/v5.json", title: "AFL Participation by Age Group and Gender", width: "container", height: 400,
-            data: { url: "data/age_gender_sport.csv", format: { type: "csv" } },
+            data: { url: "data/age_gender_sport_matrix.csv", format: { type: "csv" } },
             transform: [{ filter: "datum.sport=='AFL'" }],
             mark: { type: "bar", size: 20 },
             encoding: {
@@ -758,7 +758,7 @@
             data: { url: "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australian-states.json", format: { type: "json", property: "features" } },
             transform: [{
                 lookup: "properties.STATE_NAME",
-                from: { data: { url: "data/dominant_sport_by_state.csv", format: { type: "csv" } }, key: "state", fields: ["sport", "participants", "popularity_index"] }
+                from: { data: { url: "data/dominant_sport_by_state_matrix.csv", format: { type: "csv" } }, key: "state", fields: ["sport", "participants", "popularity_index"] }
             }, { calculate: "datum.sport==null?'No Data':datum.sport", as: "sport_display" }],
             mark: { type: "geoshape", stroke: "white", strokeWidth: 1.5 },
             encoding: {
