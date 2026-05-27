@@ -159,36 +159,6 @@
             box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3)
         }
 
-        .filter-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: rgba(231, 76, 60, 0.1);
-            padding: 0.5rem 1.25rem;
-            border-radius: 40px;
-            margin: 0.75rem auto;
-            font-size: 0.85rem;
-            color: var(--accent);
-        }
-
-        .filter-status i {
-            font-size: 0.9rem;
-        }
-
-        .reset-filter-btn {
-            background: none;
-            border: none;
-            color: var(--accent);
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 0 0.25rem;
-            transition: opacity 0.2s;
-        }
-
-        .reset-filter-btn:hover {
-            opacity: 0.7;
-        }
-
         .section {
             margin-bottom: 5rem;
             padding: 2rem 0;
@@ -219,13 +189,7 @@
             margin-bottom: 1.5rem;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.04);
-            position: relative;
-        }
-
-        .viz-card.filter-highlight {
-            box-shadow: 0 0 0 2px var(--accent), var(--shadow-hover);
-            transform: translateY(-2px);
+            border: 1px solid rgba(0, 0, 0, 0.04)
         }
 
         .viz-card:hover {
@@ -236,12 +200,7 @@
 
         .viz-container {
             min-height: 350px;
-            width: 100%;
-            transition: opacity 0.2s ease;
-        }
-
-        .viz-container.fade-out {
-            opacity: 0.5;
+            width: 100%
         }
 
         .viz-caption {
@@ -311,10 +270,6 @@
             background: var(--accent-purple)
         }
 
-        .badge-innovative {
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
-        }
-
         .loading {
             display: flex;
             align-items: center;
@@ -328,32 +283,6 @@
         .loading i {
             animation: spin 1s linear infinite;
             font-size: 1.5rem
-        }
-
-        .empty-state {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 350px;
-            color: #95A5A6;
-            flex-direction: column;
-            gap: 0.75rem;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .empty-state i {
-            font-size: 3rem;
-            opacity: 0.5;
-        }
-
-        .empty-state p {
-            font-size: 0.9rem;
-        }
-
-        .empty-state small {
-            font-size: 0.75rem;
-            color: #bdc3c7;
         }
 
         @keyframes spin {
@@ -433,70 +362,70 @@
             <h1>🏏 Australian Sports Culture</h1>
             <p>Who plays? Who watches? Is the money well spent?<br>An interactive data story exploring participation, attendance, and funding efficiency across Australia</p>
             <div class="controls" id="sportControls">
-                <button class="ctrl-btn active" data-sport="all">🏆 All Sports</button>
-                <button class="ctrl-btn" data-sport="AFL">🏉 AFL</button>
-                <button class="ctrl-btn" data-sport="Cricket">🏏 Cricket</button>
-                <button class="ctrl-btn" data-sport="Soccer">⚽ Soccer</button>
-                <button class="ctrl-btn" data-sport="Basketball">🏀 Basketball</button>
-                <button class="ctrl-btn" data-sport="Tennis">🎾 Tennis</button>
-                <button class="ctrl-btn" data-sport="Netball">🏐 Netball</button>
-                <button class="ctrl-btn" data-sport="Rugby League">🏉 Rugby League</button>
-            </div>
-            <div id="filterStatus" class="filter-status" style="display: none;">
-                <i class="fas fa-filter"></i>
-                <span>Viewing: <strong id="currentSport">All Sports</strong></span>
-                <button class="reset-filter-btn" id="resetFilterBtn"><i class="fas fa-times-circle"></i></button>
+                <button class="ctrl-btn active" data-sport="all">All Sports</button>
+                <button class="ctrl-btn" data-sport="AFL">AFL</button>
+                <button class="ctrl-btn" data-sport="Cricket">Cricket</button>
+                <button class="ctrl-btn" data-sport="Soccer">Soccer</button>
+                <button class="ctrl-btn" data-sport="Basketball">Basketball</button>
+                <button class="ctrl-btn" data-sport="Tennis">Tennis</button>
+                <button class="ctrl-btn" data-sport="Netball">Netball</button>
+                <button class="ctrl-btn" data-sport="Rugby League">Rugby League</button>
             </div>
             <div style="margin-top:1rem">
-                <span class="badge"><i class="fas fa-chart-line"></i> 15 Interactive Visualisations</span>
+                <span class="badge"><i class="fas fa-chart-line"></i> 12 Interactive Visualisations</span>
                 <span class="badge badge-blue"><i class="fas fa-map"></i> Real Geographic Map</span>
                 <span class="badge badge-green"><i class="fas fa-calculator"></i> Custom ROI Analysis</span>
                 <span class="badge badge-purple"><i class="fas fa-filter"></i> Cross-Chart Filtering</span>
-                <span class="badge badge-innovative"><i class="fas fa-chart-network"></i> Radar + Bump Charts</span>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <!-- Act 1: Participation -->
         <div class="section">
             <h2>🎯 Act 1: Who Participates? Age × Gender × Sport</h2>
             <p style="margin-bottom:1.5rem;color:var(--text-secondary)">Young Australians prefer AFL and Soccer. Netball dominates female participation. All sports see sharp decline after age 25.</p>
             <div class="pure-g">
                 <div class="pure-u-1 pure-u-md-1-2">
-                    <div class="viz-card" data-filterable="true">
+                    <div class="viz-card">
                         <h3><i class="fas fa-mars" style="color:#3498DB"></i> Male Participation Heatmap</h3>
-                        <div id="heatmap-male" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+                        <div id="heatmap-male" class="viz-container">
+                            <div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div>
+                        </div>
                         <div class="viz-caption"><i class="fas fa-info-circle"></i> Colour intensity shows participation rate. Hover for exact values.</div>
                     </div>
                 </div>
                 <div class="pure-u-1 pure-u-md-1-2">
-                    <div class="viz-card" data-filterable="true">
+                    <div class="viz-card">
                         <h3><i class="fas fa-venus" style="color:#E74C3C"></i> Female Participation Heatmap</h3>
-                        <div id="heatmap-female" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+                        <div id="heatmap-female" class="viz-container">
+                            <div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div>
+                        </div>
                         <div class="viz-caption"><i class="fas fa-info-circle"></i> Netball reaches 79% among girls aged 5-14 — the highest female rate.</div>
                     </div>
                 </div>
             </div>
             <div class="pure-g">
                 <div class="pure-u-1 pure-u-md-1-2">
-                    <div class="viz-card" data-filterable="true">
+                    <div class="viz-card">
                         <h3><i class="fas fa-chart-bar" style="color:var(--accent-orange)"></i> Gender Gap by Sport (Ages 5-14)</h3>
-                        <div id="gender-gap" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+                        <div id="gender-gap" class="viz-container">
+                            <div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div>
+                        </div>
                         <div class="insight-box"><i class="fas fa-lightbulb"></i> <strong>Insight:</strong> Netball shows the largest gender gap favouring females. AFL and Soccer favour males by ~10 percentage points.</div>
                     </div>
                 </div>
                 <div class="pure-u-1 pure-u-md-1-2">
-                    <div class="viz-card" data-filterable="true">
+                    <div class="viz-card">
                         <h3><i class="fas fa-chart-column" style="color:var(--accent)"></i> AFL Participation by Age & Gender</h3>
-                        <div id="grouped-bar" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+                        <div id="grouped-bar" class="viz-container">
+                            <div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div>
+                        </div>
                         <div class="insight-box-blue"><i class="fas fa-chart-line"></i> Participation peaks at ages 5-14, then declines by over 50% by age 55+.</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Act 2: Geographic Analysis -->
         <div class="section">
             <h2>🗺️ Act 2: State Sport Culture — Geographic Analysis</h2>
             <p style="margin-bottom:1.5rem;color:var(--text-secondary)">Victoria is AFL heartland. Queensland and NSW are Rugby League territory. ACT uniquely favours Rugby Union.</p>
@@ -504,125 +433,119 @@
                 <div class="pure-u-1 pure-u-md-2-3">
                     <div class="viz-card">
                         <h3><i class="fas fa-map-marked-alt" style="color:var(--accent-green)"></i> Dominant Sport by State (Real Boundaries)</h3>
-                        <div id="choropleth-map" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading geographic data...</span></div></div>
+                        <div id="choropleth-map" class="viz-container">
+                            <div class="loading"><i class="fas fa-spinner"></i><span>Loading geographic data...</span></div>
+                        </div>
                         <div class="viz-caption"><i class="fas fa-mouse-pointer"></i> Hover for participant numbers. Uses real Australian state boundaries with Albers projection.</div>
                     </div>
                 </div>
                 <div class="pure-u-1 pure-u-md-1-3">
-                    <div class="viz-card" data-filterable="true">
+                    <div class="viz-card">
                         <h3><i class="fas fa-chart-pie" style="color:var(--accent-purple)"></i> State Sport Share</h3>
-                        <div id="stacked-bar" class="viz-container" style="min-height:450px"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+                        <div id="stacked-bar" class="viz-container" style="min-height:450px">
+                            <div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div>
+                        </div>
                         <div class="insight-box-green"><i class="fas fa-trophy"></i> In TAS, AFL accounts for 43% of all participation — the highest state concentration.</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Act 3: Spectator Recovery -->
         <div class="section">
             <h2>📈 Act 3: Spectator Recovery After COVID-19</h2>
             <p style="margin-bottom:1.5rem;color:var(--text-secondary)">Attendance collapsed in 2020 but fully recovered by 2025, with AFL reaching record 8.96 million spectators.</p>
             <div class="pure-g">
                 <div class="pure-u-1 pure-u-md-3-5">
-                    <div class="viz-card" data-filterable="true">
+                    <div class="viz-card">
                         <h3><i class="fas fa-wave-square" style="color:var(--accent-blue)"></i> Attendance Streamgraph (2019-2025)</h3>
-                        <div id="streamgraph" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+                        <div id="streamgraph" class="viz-container">
+                            <div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div>
+                        </div>
                         <div class="viz-caption"><i class="fas fa-virus"></i> The 2020 trough represents COVID-19 lockdowns. Recovery trajectory varies by sport.</div>
                     </div>
                 </div>
                 <div class="pure-u-1 pure-u-md-2-5">
                     <div class="viz-card">
                         <h3><i class="fas fa-stadium" style="color:var(--accent-orange)"></i> Major Venue Utilisation</h3>
-                        <div id="lollipop" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+                        <div id="lollipop" class="viz-container">
+                            <div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div>
+                        </div>
                         <div class="insight-box"><i class="fas fa-star"></i> MCG leads at 82% utilisation, hosting 3.2M visitors annually.</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Act 4: Funding Efficiency -->
         <div class="section">
             <h2>💰 Act 4: Funding Efficiency & Medal ROI</h2>
             <p style="margin-bottom:1.5rem;color:var(--text-secondary)">Swimming delivers the strongest ROI. Basketball and Tennis show lower efficiency despite increased funding.</p>
             <div class="pure-g">
                 <div class="pure-u-1 pure-u-md-1-2">
-                    <div class="viz-card" data-filterable="true">
+                    <div class="viz-card">
                         <h3><i class="fas fa-chart-line" style="color:var(--accent-green)"></i> Funding Trajectory (2019 → 2025)</h3>
-                        <div id="funding-trajectory" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+                        <div id="funding-trajectory" class="viz-container">
+                            <div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div>
+                        </div>
                         <div class="viz-caption"><i class="fas fa-arrow-trend-up"></i> Tracks funding growth for each sport from 2019 to 2025.</div>
                     </div>
                 </div>
                 <div class="pure-u-1 pure-u-md-1-2">
-                    <div class="viz-card" data-filterable="true">
+                    <div class="viz-card">
                         <h3><i class="fas fa-medal" style="color:var(--accent-orange)"></i> Medals Trajectory (2019 → 2025)</h3>
-                        <div id="medals-trajectory" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+                        <div id="medals-trajectory" class="viz-container">
+                            <div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div>
+                        </div>
                         <div class="viz-caption"><i class="fas fa-arrow-trend-up"></i> Each line tracks a sport from 2019 to 2025. Steeper upward slope = faster improvement.</div>
                     </div>
                 </div>
             </div>
             <div class="pure-g">
                 <div class="pure-u-1 pure-u-md-1-2">
-                    <div class="viz-card" data-filterable="true">
+                    <div class="viz-card">
                         <h3><i class="fas fa-circle" style="color:var(--accent-purple)"></i> Funding × Medals Bubble Chart (2025)</h3>
-                        <div id="bubble-chart" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+                        <div id="bubble-chart" class="viz-container">
+                            <div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div>
+                        </div>
                         <div class="insight-box-blue"><i class="fas fa-chart-scatter"></i> Bubble size = funding amount. Position shows medals relative to investment.</div>
                     </div>
                 </div>
                 <div class="pure-u-1 pure-u-md-1-2">
-                    <div class="viz-card" data-filterable="true">
+                    <div class="viz-card">
                         <h3><i class="fas fa-gauge-high" style="color:var(--accent)"></i> Funding Efficiency: Medals per $10M (2025)</h3>
-                        <div id="roi-chart" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+                        <div id="roi-chart" class="viz-container">
+                            <div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div>
+                        </div>
                         <div class="insight-box-green"><i class="fas fa-medal"></i> Swimming: 3.79 medals per $10M. Sailing: 2.78. Basketball: only 1.50 — lowest efficiency.</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Act 5: Pathways + INNOVATIVE VISUALISATIONS -->
         <div class="section">
-            <h2>🌟 Act 5: Pathways to Participation & Advanced Analytics</h2>
+            <h2>🌟 Act 5: Pathways to Participation</h2>
             <p style="margin-bottom:1.5rem;color:var(--text-secondary)">Only 9% of aware fans become club members. School programs are the critical entry point for sustained participation.</p>
             <div class="pure-g">
                 <div class="pure-u-1 pure-u-md-1-3">
                     <div class="viz-card">
                         <h3><i class="fas fa-filter" style="color:var(--accent-blue)"></i> Fan Conversion Funnel</h3>
-                        <div id="funnel" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+                        <div id="funnel" class="viz-container">
+                            <div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div>
+                        </div>
                         <div class="insight-box"><i class="fas fa-exclamation-circle"></i> <strong>91% leakage:</strong> From 100% awareness to only 9% membership.</div>
                     </div>
                 </div>
                 <div class="pure-u-1 pure-u-md-2-3">
-                    <div class="viz-card" data-filterable="true">
+                    <div class="viz-card">
                         <h3><i class="fas fa-route" style="color:var(--accent-green)"></i> Participation Pathways: Entry → Outcome</h3>
-                        <div id="alluvial" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div></div>
+                        <div id="alluvial" class="viz-container">
+                            <div class="loading"><i class="fas fa-spinner"></i><span>Loading...</span></div>
+                        </div>
                         <div class="viz-caption"><i class="fas fa-school"></i> School sport is the dominant entry for AFL (36%), Soccer (42%), and Netball (46%).</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- INNOVATIVE VISUALISATION 1: Radar/Parallel Coordinates Chart -->
-            <div class="pure-g">
-                <div class="pure-u-1 pure-u-md-1-2">
-                    <div class="viz-card" data-filterable="true">
-                        <h3><i class="fas fa-chart-network" style="color:var(--accent-purple)"></i> Sport Performance Radar (Multi-Dimensional)</h3>
-                        <div id="radar-chart" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading innovative visualisation...</span></div></div>
-                        <div class="viz-caption"><i class="fas fa-chart-line"></i> <strong>Innovation:</strong> Parallel coordinates plot showing 5 key metrics. Each line = one sport. Hover to highlight.</div>
-                        <div class="insight-box-blue"><i class="fas fa-chart-line"></i> Swimming and Cycling excel in medal efficiency, while AFL dominates participation metrics.</div>
-                    </div>
-                </div>
-
-                <!-- INNOVATIVE VISUALISATION 2: Bump Chart - Ranking Evolution -->
-                <div class="pure-u-1 pure-u-md-1-2">
-                    <div class="viz-card" data-filterable="true">
-                        <h3><i class="fas fa-chart-line" style="color:var(--accent-orange)"></i> Popularity Ranking Evolution (2019-2025)</h3>
-                        <div id="bump-chart" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading innovative visualisation...</span></div></div>
-                        <div class="viz-caption"><i class="fas fa-chart-line"></i> <strong>Innovation:</strong> Bump chart showing how sport popularity rankings change over time. Lines crossing = ranking changes.</div>
-                        <div class="insight-box-green"><i class="fas fa-chart-line"></i> AFL has remained #1, while Basketball has climbed from #6 to #4 between 2019-2025.</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Key Findings -->
         <div class="section">
             <h2>📋 Key Findings & Recommendations</h2>
             <div class="pure-g">
@@ -673,24 +596,17 @@
             <hr style="margin:2rem 0;border:none;height:1px;background:rgba(255,255,255,0.1)">
             <div class="pure-g" style="font-size:0.85rem">
                 <div class="pure-u-1 pure-u-md-1-2"><i class="far fa-copyright"></i> 2026 | FIT2179 Monash University</div>
-                <div class="pure-u-1 pure-u-md-1-2" style="text-align:right"><i class="fas fa-robot"></i> AI Acknowledgement: GitHub Copilot & ChatGPT used for code scaffolding and text refinement.</div>
+                <div class="pure-u-1 pure-u-md-1-2" style="text-align:right"><i class="fas fa-robot"></i> AI Acknowledgement:GitHub Copilot & ChatGPT used for code scaffolding and text refinement.</div>
             </div>
         </div>
     </div>
 
     <script>
-        // ============================================
-        // CONFIGURATION
-        // ============================================
         const CFG = {
             axis: { labelFontSize: 11, titleFontSize: 12, labelAngle: 0 },
             legend: { titleFontSize: 11, labelFontSize: 10 },
             view: { stroke: null }
         };
-
-        // ============================================
-        // ORIGINAL CHART SPECIFICATIONS
-        // ============================================
 
         // 1. Male Heatmap
         const heatmapMale = {
@@ -720,7 +636,7 @@
             config: CFG
         };
 
-        // 3. Gender Gap
+        // 3. Gender Gap (Diverging Bar)
         const genderGap = {
             $schema: "https://vega.github.io/schema/vega-lite/v5.json", title: "Gender Participation Gap (Ages 5-14)", width: "container", height: 350,
             data: { url: "data/age_gender_sport_matrix.csv", format: { type: "csv" } },
@@ -758,7 +674,7 @@
             data: { url: "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australian-states.json", format: { type: "json", property: "features" } },
             transform: [{
                 lookup: "properties.STATE_NAME",
-                from: { data: { url: "data/dominant_sport_by_state_matrix.csv", format: { type: "csv" } }, key: "state", fields: ["sport", "participants", "popularity_index"] }
+                from: { data: { url: "data/dominant_sport_by_state.csv", format: { type: "csv" } }, key: "state", fields: ["sport", "participants", "popularity_index"] }
             }, { calculate: "datum.sport==null?'No Data':datum.sport", as: "sport_display" }],
             mark: { type: "geoshape", stroke: "white", strokeWidth: 1.5 },
             encoding: {
@@ -901,363 +817,50 @@
         };
 
         // ============================================
-        // INNOVATIVE VISUALISATION 14: RADAR/PARALLEL COORDINATES
-        // Multi-dimensional sport performance comparison
+        // RENDER ALL CHARTS + INTERACTIVITY
         // ============================================
-        const radarChart = {
-            $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-            title: "Sport Performance Multi-Dimensional Analysis",
-            width: "container",
-            height: 400,
-            data: {
-                values: [
-                    { sport: "AFL", metric: "Participation Rate", value: 65, normalized: 0.85 },
-                    { sport: "AFL", metric: "Attendance (M)", value: 8.96, normalized: 1.0 },
-                    { sport: "AFL", metric: "Funding ($M)", value: 0, normalized: 0 },
-                    { sport: "AFL", metric: "Medal Efficiency", value: 0, normalized: 0 },
-                    { sport: "AFL", metric: "Youth Engagement", value: 76, normalized: 0.89 },
-                    { sport: "Cricket", metric: "Participation Rate", value: 55, normalized: 0.72 },
-                    { sport: "Cricket", metric: "Attendance (M)", value: 2.73, normalized: 0.30 },
-                    { sport: "Cricket", metric: "Funding ($M)", value: 0, normalized: 0 },
-                    { sport: "Cricket", metric: "Medal Efficiency", value: 0, normalized: 0 },
-                    { sport: "Cricket", metric: "Youth Engagement", value: 57, normalized: 0.67 },
-                    { sport: "Soccer", metric: "Participation Rate", value: 82, normalized: 0.96 },
-                    { sport: "Soccer", metric: "Attendance (M)", value: 1.95, normalized: 0.22 },
-                    { sport: "Soccer", metric: "Funding ($M)", value: 0, normalized: 0 },
-                    { sport: "Soccer", metric: "Medal Efficiency", value: 0, normalized: 0 },
-                    { sport: "Soccer", metric: "Youth Engagement", value: 82, normalized: 0.96 },
-                    { sport: "Basketball", metric: "Participation Rate", value: 74, normalized: 0.87 },
-                    { sport: "Basketball", metric: "Attendance (M)", value: 1.17, normalized: 0.13 },
-                    { sport: "Basketball", metric: "Funding ($M)", value: 20, normalized: 0.34 },
-                    { sport: "Basketball", metric: "Medal Efficiency", value: 1.5, normalized: 0.40 },
-                    { sport: "Basketball", metric: "Youth Engagement", value: 74, normalized: 0.87 },
-                    { sport: "Tennis", metric: "Participation Rate", value: 40, normalized: 0.53 },
-                    { sport: "Tennis", metric: "Attendance (M)", value: 1.04, normalized: 0.12 },
-                    { sport: "Tennis", metric: "Funding ($M)", value: 11, normalized: 0.19 },
-                    { sport: "Tennis", metric: "Medal Efficiency", value: 1.82, normalized: 0.48 },
-                    { sport: "Tennis", metric: "Youth Engagement", value: 42, normalized: 0.49 },
-                    { sport: "Netball", metric: "Participation Rate", value: 58, normalized: 0.76 },
-                    { sport: "Netball", metric: "Attendance (M)", value: 0, normalized: 0 },
-                    { sport: "Netball", metric: "Funding ($M)", value: 0, normalized: 0 },
-                    { sport: "Netball", metric: "Medal Efficiency", value: 0, normalized: 0 },
-                    { sport: "Netball", metric: "Youth Engagement", value: 73, normalized: 0.86 },
-                    { sport: "Rugby League", metric: "Participation Rate", value: 58, normalized: 0.76 },
-                    { sport: "Rugby League", metric: "Attendance (M)", value: 3.89, normalized: 0.43 },
-                    { sport: "Rugby League", metric: "Funding ($M)", value: 0, normalized: 0 },
-                    { sport: "Rugby League", metric: "Medal Efficiency", value: 0, normalized: 0 },
-                    { sport: "Rugby League", metric: "Youth Engagement", value: 58, normalized: 0.68 },
-                    { sport: "Swimming", metric: "Participation Rate", value: 0, normalized: 0 },
-                    { sport: "Swimming", metric: "Attendance (M)", value: 0, normalized: 0 },
-                    { sport: "Swimming", metric: "Funding ($M)", value: 58, normalized: 1.0 },
-                    { sport: "Swimming", metric: "Medal Efficiency", value: 3.79, normalized: 1.0 },
-                    { sport: "Swimming", metric: "Youth Engagement", value: 0, normalized: 0 },
-                    { sport: "Cycling", metric: "Participation Rate", value: 0, normalized: 0 },
-                    { sport: "Cycling", metric: "Attendance (M)", value: 0, normalized: 0 },
-                    { sport: "Cycling", metric: "Funding ($M)", value: 36, normalized: 0.62 },
-                    { sport: "Cycling", metric: "Medal Efficiency", value: 2.78, normalized: 0.73 },
-                    { sport: "Cycling", metric: "Youth Engagement", value: 0, normalized: 0 }
-                ]
-            },
-            transform: [
-                { filter: "datum.value > 0" }
-            ],
-            mark: { type: "line", point: { filled: true, size: 60 }, strokeWidth: 2 },
-            encoding: {
-                x: { field: "metric", type: "nominal", title: "Performance Metrics", sort: ["Participation Rate", "Youth Engagement", "Attendance (M)", "Medal Efficiency", "Funding ($M)"] },
-                y: { field: "normalized", type: "quantitative", title: "Normalized Score (0-1)", scale: { domain: [0, 1] } },
-                color: { field: "sport", type: "nominal", title: "Sport" },
-                tooltip: [{ field: "sport" }, { field: "metric" }, { field: "value", title: "Raw Value", format: ".2f" }, { field: "normalized", title: "Normalized", format: ".2f" }]
-            },
-            config: CFG
-        };
+        window.addEventListener('load', function () {
+            const charts = [
+                { id: '#heatmap-male', spec: heatmapMale },
+                { id: '#heatmap-female', spec: heatmapFemale },
+                { id: '#gender-gap', spec: genderGap },
+                { id: '#grouped-bar', spec: groupedBar },
+                { id: '#choropleth-map', spec: choroplethMap },
+                { id: '#stacked-bar', spec: stackedBar },
+                { id: '#streamgraph', spec: streamgraph },
+                { id: '#lollipop', spec: lollipop },
+                { id: '#funding-trajectory', spec: fundingTrajectory },
+                { id: '#medals-trajectory', spec: medalsTrajectory },
+                { id: '#bubble-chart', spec: bubbleChart },
+                { id: '#roi-chart', spec: roiChart },
+                { id: '#funnel', spec: funnel },
+                { id: '#alluvial', spec: alluvial }
+            ];
 
-        // ============================================
-        // INNOVATIVE VISUALISATION 15: BUMP CHART
-        // Ranking evolution over time
-        // ============================================
-        const bumpChart = {
-            $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-            title: "Sport Popularity Ranking Evolution (2019-2025)",
-            width: "container",
-            height: 400,
-            data: {
-                values: [
-                    { sport: "AFL", year: 2019, rank: 1, attendance: 6.9 },
-                    { sport: "AFL", year: 2020, rank: 1, attendance: 2.21 },
-                    { sport: "AFL", year: 2021, rank: 1, attendance: 3.8 },
-                    { sport: "AFL", year: 2022, rank: 1, attendance: 5.87 },
-                    { sport: "AFL", year: 2023, rank: 1, attendance: 7.34 },
-                    { sport: "AFL", year: 2024, rank: 1, attendance: 8.49 },
-                    { sport: "AFL", year: 2025, rank: 1, attendance: 8.96 },
-                    { sport: "Cricket", year: 2019, rank: 2, attendance: 2.1 },
-                    { sport: "Cricket", year: 2020, rank: 2, attendance: 0.67 },
-                    { sport: "Cricket", year: 2021, rank: 2, attendance: 1.16 },
-                    { sport: "Cricket", year: 2022, rank: 2, attendance: 1.79 },
-                    { sport: "Cricket", year: 2023, rank: 3, attendance: 2.23 },
-                    { sport: "Cricket", year: 2024, rank: 3, attendance: 2.58 },
-                    { sport: "Cricket", year: 2025, rank: 3, attendance: 2.73 },
-                    { sport: "Rugby League", year: 2019, rank: 3, attendance: 3.0 },
-                    { sport: "Rugby League", year: 2020, rank: 3, attendance: 0.96 },
-                    { sport: "Rugby League", year: 2021, rank: 3, attendance: 1.65 },
-                    { sport: "Rugby League", year: 2022, rank: 3, attendance: 2.55 },
-                    { sport: "Rugby League", year: 2023, rank: 2, attendance: 3.19 },
-                    { sport: "Rugby League", year: 2024, rank: 2, attendance: 3.69 },
-                    { sport: "Rugby League", year: 2025, rank: 2, attendance: 3.89 },
-                    { sport: "Soccer", year: 2019, rank: 4, attendance: 1.5 },
-                    { sport: "Soccer", year: 2020, rank: 4, attendance: 0.48 },
-                    { sport: "Soccer", year: 2021, rank: 4, attendance: 0.83 },
-                    { sport: "Soccer", year: 2022, rank: 4, attendance: 1.28 },
-                    { sport: "Soccer", year: 2023, rank: 4, attendance: 1.6 },
-                    { sport: "Soccer", year: 2024, rank: 4, attendance: 1.85 },
-                    { sport: "Soccer", year: 2025, rank: 4, attendance: 1.95 },
-                    { sport: "Basketball", year: 2019, rank: 6, attendance: 0.9 },
-                    { sport: "Basketball", year: 2020, rank: 6, attendance: 0.29 },
-                    { sport: "Basketball", year: 2021, rank: 6, attendance: 0.5 },
-                    { sport: "Basketball", year: 2022, rank: 5, attendance: 0.77 },
-                    { sport: "Basketball", year: 2023, rank: 5, attendance: 0.96 },
-                    { sport: "Basketball", year: 2024, rank: 5, attendance: 1.11 },
-                    { sport: "Basketball", year: 2025, rank: 5, attendance: 1.17 },
-                    { sport: "Tennis", year: 2019, rank: 5, attendance: 0.8 },
-                    { sport: "Tennis", year: 2020, rank: 5, attendance: 0.26 },
-                    { sport: "Tennis", year: 2021, rank: 5, attendance: 0.44 },
-                    { sport: "Tennis", year: 2022, rank: 6, attendance: 0.68 },
-                    { sport: "Tennis", year: 2023, rank: 6, attendance: 0.85 },
-                    { sport: "Tennis", year: 2024, rank: 6, attendance: 0.98 },
-                    { sport: "Tennis", year: 2025, rank: 6, attendance: 1.04 }
-                ]
-            },
-            mark: { type: "line", point: { filled: true, size: 80 }, strokeWidth: 2.5, interpolate: "monotone" },
-            encoding: {
-                x: { field: "year", type: "ordinal", title: "Year", axis: { format: "d" } },
-                y: { field: "rank", type: "quantitative", title: "Ranking (1 = Most Popular)", scale: { reverse: true, domain: [1, 6] }, axis: { tickMinStep: 1 } },
-                color: { field: "sport", type: "nominal", title: "Sport" },
-                tooltip: [{ field: "sport" }, { field: "year" }, { field: "rank", title: "Rank" }, { field: "attendance", title: "Attendance (M)", format: ".2f" }]
-            },
-            config: CFG
-        };
+            charts.forEach(function (chart) {
+                vegaEmbed(chart.id, chart.spec, { actions: false })
+                    .then(function () { console.log('Rendered:', chart.id); })
+                    .catch(function (err) {
+                        console.warn('Failed to render', chart.id, err);
+                        const el = document.querySelector(chart.id);
+                        if (el) {
+                            el.innerHTML = '<div class="loading"><i class="fas fa-exclamation-triangle"></i> Chart failed to load</div>';
+                        }
+                    });
+            });
 
-        // ============================================
-        // FILTERING & PERFORMANCE OPTIMIZATION
-        // ============================================
-        
-        let currentSportFilter = 'all';
-        let chartInstances = new Map();
-        let isRendering = false;
-        let renderQueue = null;
-        
-        // Chart ID mappings
-        const filterableChartIds = [
-            '#heatmap-male', '#heatmap-female', '#gender-gap', '#grouped-bar',
-            '#stacked-bar', '#streamgraph', '#funding-trajectory', '#medals-trajectory',
-            '#bubble-chart', '#roi-chart', '#alluvial'
-        ];
-        
-        const innovativeChartIds = ['#radar-chart', '#bump-chart'];
-        const staticChartIds = ['#choropleth-map', '#lollipop', '#funnel'];
-        
-        // All chart configurations
-        const allChartSpecs = {
-            '#heatmap-male': heatmapMale,
-            '#heatmap-female': heatmapFemale,
-            '#gender-gap': genderGap,
-            '#grouped-bar': groupedBar,
-            '#choropleth-map': choroplethMap,
-            '#stacked-bar': stackedBar,
-            '#streamgraph': streamgraph,
-            '#lollipop': lollipop,
-            '#funding-trajectory': fundingTrajectory,
-            '#medals-trajectory': medalsTrajectory,
-            '#bubble-chart': bubbleChart,
-            '#roi-chart': roiChart,
-            '#funnel': funnel,
-            '#alluvial': alluvial,
-            '#radar-chart': radarChart,
-            '#bump-chart': bumpChart
-        };
-        
-        // Apply filter to chart spec
-        function applyFilterToSpec(spec, sportFilter, chartId) {
-            if (sportFilter === 'all') {
-                const newSpec = JSON.parse(JSON.stringify(spec));
-                if (newSpec.transform) {
-                    newSpec.transform = newSpec.transform.filter(t => !t.filter || !t.filter.includes('sport'));
-                }
-                if (newSpec.title && newSpec.title.includes(' - ')) {
-                    newSpec.title = newSpec.title.split(' - ')[1];
-                }
-                return newSpec;
-            }
-            
-            const newSpec = JSON.parse(JSON.stringify(spec));
-            if (!newSpec.transform) newSpec.transform = [];
-            newSpec.transform = newSpec.transform.filter(t => !t.filter || !t.filter.includes('sport'));
-            newSpec.transform.push({ filter: `datum.sport == '${sportFilter}'` });
-            
-            if (newSpec.title && !newSpec.title.includes(`${sportFilter} -`)) {
-                newSpec.title = `${sportFilter} - ${newSpec.title}`;
-            }
-            return newSpec;
-        }
-        
-        // Show empty state for charts with no data
-        function showEmptyState(containerId, sport) {
-            const container = document.querySelector(containerId);
-            if (container) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-chart-line"></i>
-                        <p>No participation data available for ${sport}</p>
-                        <small>Try selecting another sport</small>
-                    </div>
-                `;
-            }
-        }
-        
-        // Debounced render function for performance
-        async function renderChartWithDebounce(chartId, spec, sportFilter) {
-            const container = document.querySelector(chartId);
-            if (!container) return;
-            
-            // Add fade-out effect
-            container.classList.add('fade-out');
-            
-            // Use requestAnimationFrame for smooth UI
-            await new Promise(resolve => requestAnimationFrame(resolve));
-            
-            try {
-                const finalSpec = filterableChartIds.includes(chartId) 
-                    ? applyFilterToSpec(spec, sportFilter, chartId) 
-                    : spec;
-                
-                const result = await vegaEmbed(chartId, finalSpec, { actions: false });
-                chartInstances.set(chartId, result);
-                container.classList.remove('fade-out');
-            } catch (err) {
-                console.warn(`Failed to render ${chartId}:`, err);
-                if (err.message && err.message.includes('no data')) {
-                    showEmptyState(chartId, sportFilter);
-                } else {
-                    container.innerHTML = '<div class="loading"><i class="fas fa-exclamation-triangle"></i> Chart failed to load</div>';
-                }
-                container.classList.remove('fade-out');
-            }
-        }
-        
-        // Render all charts with current filter
-        async function renderAllCharts(sportFilter) {
-            if (isRendering) {
-                renderQueue = sportFilter;
-                return;
-            }
-            
-            isRendering = true;
-            
-            // Render filterable charts in parallel with Promise.all for performance
-            const filterablePromises = filterableChartIds.map(chartId => {
-                const spec = allChartSpecs[chartId];
-                if (spec) {
-                    return renderChartWithDebounce(chartId, spec, sportFilter);
-                }
-                return Promise.resolve();
-            });
-            
-            // Render innovative charts
-            const innovativePromises = innovativeChartIds.map(chartId => {
-                const spec = allChartSpecs[chartId];
-                if (spec) {
-                    return renderChartWithDebounce(chartId, spec, sportFilter);
-                }
-                return Promise.resolve();
-            });
-            
-            // Render static charts only once
-            if (chartInstances.size === 0) {
-                const staticPromises = staticChartIds.map(chartId => {
-                    const spec = allChartSpecs[chartId];
-                    if (spec && !chartInstances.has(chartId)) {
-                        return renderChartWithDebounce(chartId, spec, sportFilter);
-                    }
-                    return Promise.resolve();
-                });
-                await Promise.all(staticPromises);
-            }
-            
-            await Promise.all([...filterablePromises, ...innovativePromises]);
-            
-            isRendering = false;
-            if (renderQueue !== null && renderQueue !== sportFilter) {
-                const queuedFilter = renderQueue;
-                renderQueue = null;
-                await renderAllCharts(queuedFilter);
-            }
-        }
-        
-        // Update UI for filter state
-        function updateFilterUI(sport) {
-            // Update buttons
+            console.log('All charts initiated. Total visualisations: 13');
+
+            // Sport filter controls
             document.querySelectorAll('.ctrl-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.sport === sport);
-            });
-            
-            // Update filter status display
-            const filterStatus = document.getElementById('filterStatus');
-            const currentSportSpan = document.getElementById('currentSport');
-            if (sport === 'all') {
-                filterStatus.style.display = 'none';
-            } else {
-                filterStatus.style.display = 'inline-flex';
-                currentSportSpan.textContent = sport;
-            }
-            
-            // Highlight relevant cards
-            document.querySelectorAll('.viz-card[data-filterable="true"]').forEach(card => {
-                if (sport === 'all') {
-                    card.classList.remove('filter-highlight');
-                } else {
-                    const hasSport = card.textContent.toLowerCase().includes(sport.toLowerCase());
-                    card.classList.toggle('filter-highlight', hasSport);
-                }
-            });
-        }
-        
-        // Main filter application
-        async function applySportFilter(sport) {
-            if (currentSportFilter === sport) return;
-            currentSportFilter = sport;
-            updateFilterUI(sport);
-            await renderAllCharts(sport);
-        }
-        
-        function resetFilter() {
-            applySportFilter('all');
-        }
-        
-        // ============================================
-        // INITIALIZATION
-        // ============================================
-        window.addEventListener('load', async function() {
-            // Initial render
-            await renderAllCharts('all');
-            
-            // Bind filter button events
-            document.querySelectorAll('.ctrl-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    applySportFilter(btn.dataset.sport);
+                btn.addEventListener('click', function () {
+                    document.querySelectorAll('.ctrl-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    const sport = this.dataset.sport;
+                    console.log('Filter by sport:', sport);
+                    // Future enhancement: cross-filter all charts
                 });
             });
-            
-            // Bind reset button
-            const resetBtn = document.getElementById('resetFilterBtn');
-            if (resetBtn) {
-                resetBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    resetFilter();
-                });
-            }
-            
-            console.log('All charts initialized. Total visualisations: 15 (11 filterable + 2 innovative + 2 static)');
-            console.log('Cross-chart filtering enabled with performance optimization.');
         });
     </script>
 </body>
