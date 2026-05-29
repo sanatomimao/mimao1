@@ -834,24 +834,19 @@
     };
 
     // 12. Funnel Chart
-    const funnelSpec = {
-        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-        title: "Fan Conversion Funnel",
-        width: "container", height: 350,
-        data: { url: "data/sports_fan_funnel.csv", format: { type: "csv" } },
-        mark: "bar",
-        encoding: {
-            y: { field: "stage", type: "nominal", title: "Stage", sort: { field: "percent_of_audience", order: "descending" } },
-            x: { field: "percent_of_audience", type: "quantitative", title: "Percentage of Audience (%)", scale: { domain: [0, 100] } },
-            color: { condition: { test: "datum.stage=='Membership'", value: "#D32F2F" }, value: "#1976D2" },
-            tooltip: [
-                { field: "stage", title: "Stage" },
-                { field: "description", title: "Description" },
-                { field: "percent_of_audience", title: "Percentage (%)", format: ".1f" }
-            ]
-        },
-        config: { ...CHART_CONFIG, bar: { binSpacing: 5 } }
-    };
+   const trueFunnel = {
+    $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+    title: "Fan Conversion Funnel",
+    width: "container", height: 350,
+    data: { url: "data/sports_fan_funnel.csv" },
+    mark: { type: "bar", width: { band: 0.6 } },  // 渐窄效果
+    encoding: {
+        y: { field: "stage", type: "nominal", sort: null },
+        x: { field: "percent_of_audience", type: "quantitative", scale: { domain: [0, 100] } },
+        color: { field: "stage", legend: null, scale: { scheme: "blues" } },
+        tooltip: [{ field: "stage" }, { field: "percent_of_audience", format: ".1f" }]
+    }
+};
 
     // 13. Alluvial-style Pathways
     const alluvialSpec = {
