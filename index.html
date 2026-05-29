@@ -903,14 +903,55 @@
                 });
         });
 
-        // Sport filter controls (future enhancement placeholder)
+        // Cross-chart sport filtering
+        function applySportFilter(spec, sport) {
+            if (sport === 'all') return spec;
+            // Deep clone the spec
+            const newSpec = JSON.parse(JSON.stringify(spec));
+            // Add sport filter to transform array
+            const sportFilter = { filter: "datum.sport == '" + sport + "'" };
+            if (newSpec.transform) {
+                // Prepend sport filter to existing transforms
+                newSpec.transform = [sportFilter, ...newSpec.transform];
+            } else {
+                newSpec.transform = [sportFilter];
+            }
+            return newSpec;
+        }
+
+        function updateAllCharts(sport) {
+            // Charts that support sport filtering (exclude fixed-AFL and non-sport charts)
+            const chartsToUpdate = [
+                { id: '#heatmap-male', spec: heatmapMaleSpec },
+                { id: '#heatmap-female', spec: heatmapFemaleSpec },
+                { id: '#gender-gap', spec: genderGapSpec },
+                // groupedBarSpec excluded: fixed AFL filter
+                { id: '#stacked-bar', spec: stackedBarSpec },
+                { id: '#streamgraph', spec: streamgraphSpec },
+                { id: '#funding-trajectory', spec: fundingTrajectorySpec },
+                { id: '#medals-trajectory', spec: medalsTrajectorySpec },
+                { id: '#bubble-chart', spec: bubbleChartSpec },
+                { id: '#roi-chart', spec: roiChartSpec },
+                { id: '#funnel', spec: funnelSpec },
+                { id: '#alluvial', spec: alluvialSpec }
+                // choropleth-map and lollipop excluded: no sport field
+            ];
+
+            chartsToUpdate.forEach(chart => {
+                const filteredSpec = applySportFilter(chart.spec, sport);
+                vegaEmbed(chart.id, filteredSpec, { actions: false })
+                    .then(() => console.log(`✓ Filtered: ${chart.id} → ${sport}`))
+                    .catch(err => console.warn(`✗ Filter failed ${chart.id}:`, err));
+            });
+        }
+
         document.querySelectorAll('.ctrl-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.ctrl-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 const sport = this.dataset.sport;
-                console.log('Filter selected (placeholder for cross-filtering):', sport);
-                // Additional filtering logic can be implemented here
+                currentSportFilter = sport;
+                updateAllCharts(sport);
             });
         });
     });
