@@ -655,7 +655,8 @@
         title: "Dominant Sport by State",
         width: "container", height: 600,
         //projection: { type: "mercator", center: [134, -28], scale: 450 },
-        projection: { type: "albers", center: [134, -28], parallels: [-18, -36], scale: 500 },
+        //projection: { type: "albers", center: [134, -28], parallels: [-18, -36], scale: 500 },
+        projection: { type: "albers", rotate: [132, 0, 0], center: [0, -30], parallels: [-18, -36]}
         //data: { url: "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australian-states.json", format: { type: "json", property: "features" } },
         data: { url: "data/states.geojson",  format: { type: "geojson", property: "features" }}
         transform: [{
