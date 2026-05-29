@@ -44,421 +44,92 @@
                 --border: #334155;
             }
             
-            body {
-                background: var(--bg);
-            }
-            
-            .hero {
-                background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-            }
-            
-            .insight-box, 
-            .insight-box-blue, 
-            .insight-box-green {
-                background: rgba(30, 41, 59, 0.9);
-            }
-            
-            .viz-card {
-                background: var(--card-bg);
-                border-color: rgba(255, 255, 255, 0.05);
-            }
-            
-            .ctrl-btn {
-                background: #1E293B;
-                border-color: #334155;
-                color: #94A3B8;
-            }
-            
-            .ctrl-btn.active {
-                background: var(--accent);
-                color: white;
-            }
+            body { background: var(--bg); }
+            .hero { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); }
+            .insight-box, .insight-box-blue, .insight-box-green { background: rgba(30, 41, 59, 0.9); }
+            .viz-card { background: var(--card-bg); border-color: rgba(255, 255, 255, 0.05); }
+            .ctrl-btn { background: #1E293B; border-color: #334155; color: #94A3B8; }
+            .ctrl-btn.active { background: var(--accent); color: white; }
         }
 
         /* ---------- Global Reset & Base Styles ---------- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 600; letter-spacing: -0.02em; }
+        h1 { font-size: clamp(2.5rem, 6vw, 4.2rem); font-weight: 800; background: linear-gradient(135deg, #1A1A2E 0%, #E74C3C 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; line-height: 1.2; }
+        h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin-bottom: 1rem; color: var(--text); border-left: 6px solid var(--accent); padding-left: 1rem; font-weight: 700; }
+        h3 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--text); font-weight: 600; display: flex; align-items: center; gap: 0.5rem; letter-spacing: -0.01em; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
+        /* Layout Components */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        .hero { text-align: center; padding: 4rem 2rem 3rem; background: linear-gradient(135deg, #FFFFFF 0%, #F4F7FC 100%); border-bottom: 1px solid rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -30%; left: -20%; width: 140%; height: 140%; background: radial-gradient(circle, rgba(231, 76, 60, 0.04) 0%, transparent 70%); animation: slowDrift 18s ease-in-out infinite; pointer-events: none; }
+        @keyframes slowDrift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(2%, 1%) scale(1.03); } }
+        .hero p { font-size: 1.2rem; color: var(--text-secondary); max-width: 720px; margin: 0 auto; position: relative; z-index: 1; line-height: 1.5; }
 
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4.2rem);
-            font-weight: 800;
-            background: linear-gradient(135deg, #1A1A2E 0%, #E74C3C 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        h2 {
-            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-            margin-bottom: 1rem;
-            color: var(--text);
-            border-left: 6px solid var(--accent);
-            padding-left: 1rem;
-            font-weight: 700;
-        }
-
-        h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: var(--text);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            letter-spacing: -0.01em;
-        }
-
-        /* ---------- Layout Components ---------- */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 4rem 2rem 3rem;
-            background: linear-gradient(135deg, #FFFFFF 0%, #F4F7FC 100%);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            left: -20%;
-            width: 140%;
-            height: 140%;
-            background: radial-gradient(circle, rgba(231, 76, 60, 0.04) 0%, transparent 70%);
-            animation: slowDrift 18s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes slowDrift {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(2%, 1%) scale(1.03); }
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 720px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            line-height: 1.5;
-        }
-
-        /* Controls refinement */
-        .controls {
-            display: flex;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 2rem 0 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .ctrl-btn {
-            padding: 0.6rem 1.2rem;
-            border: 1.5px solid var(--border);
-            background: white;
-            border-radius: 40px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-            color: var(--text-secondary);
-            letter-spacing: -0.2px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .ctrl-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px -6px rgba(231,76,60,0.2);
-        }
-
-        .ctrl-btn.active {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
-            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
-        }
-
-        /* Export Button */
-        .export-btn {
-            background: #2C3E50 !important;
-            border-color: #2C3E50 !important;
-            color: white !important;
-        }
-        
-        .export-btn:hover {
-            background: #1A252F !important;
-            transform: translateY(-2px);
-        }
+        /* Controls */
+        .controls { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin: 2rem 0 1rem; position: relative; z-index: 1; }
+        .ctrl-btn { padding: 0.6rem 1.2rem; border: 1.5px solid var(--border); background: white; border-radius: 40px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: all 0.2s ease; color: var(--text-secondary); letter-spacing: -0.2px; box-shadow: var(--shadow-sm); }
+        .ctrl-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 12px -6px rgba(231,76,60,0.2); }
+        .ctrl-btn.active { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3); }
+        .export-btn { background: #2C3E50 !important; border-color: #2C3E50 !important; color: white !important; }
+        .export-btn:hover { background: #1A252F !important; transform: translateY(-2px); }
 
         /* Badges */
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: rgba(0,0,0,0.04);
-            color: #2c3e50;
-            padding: 0.4rem 1rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            margin: 0.3rem;
-            font-weight: 500;
-            backdrop-filter: blur(2px);
-        }
-
-        /* Section spacing */
-        .section {
-            margin-bottom: 5rem;
-            padding: 1rem 0 2rem;
-            border-bottom: 1px solid var(--border);
-        }
-        .section:last-child { border-bottom: none; margin-bottom: 2rem; }
+        .badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(0,0,0,0.04); color: #2c3e50; padding: 0.4rem 1rem; border-radius: 40px; font-size: 0.8rem; margin: 0.3rem; font-weight: 500; backdrop-filter: blur(2px); }
 
         /* Cards */
-        .viz-card {
-            background: var(--card-bg);
-            border-radius: 24px;
-            padding: 1.6rem;
-            margin-bottom: 1.8rem;
-            box-shadow: var(--shadow-md);
-            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
-            border: 1px solid rgba(0, 0, 0, 0.03);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .viz-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-            border-color: rgba(231, 76, 60, 0.15);
-        }
-
-        .viz-container {
-            min-height: 360px;
-            width: 100%;
-            flex: 1;
-        }
-
-        .viz-caption {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-top: 1rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
+        .section { margin-bottom: 5rem; padding: 1rem 0 2rem; border-bottom: 1px solid var(--border); }
+        .section:last-child { border-bottom: none; margin-bottom: 2rem; }
+        .viz-card { background: var(--card-bg); border-radius: 24px; padding: 1.6rem; margin-bottom: 1.8rem; box-shadow: var(--shadow-md); transition: all 0.3s cubic-bezier(0.2, 0, 0, 1); border: 1px solid rgba(0, 0, 0, 0.03); height: 100%; display: flex; flex-direction: column; }
+        .viz-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: rgba(231, 76, 60, 0.15); }
+        .viz-container { min-height: 360px; width: 100%; flex: 1; }
+        .viz-caption { font-size: 0.8rem; color: var(--text-secondary); margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 0.4rem; }
 
         /* Insight Boxes */
-        .insight-box {
-            background: linear-gradient(135deg, #FFF8F5 0%, #FFFFFF 100%);
-            border-left: 4px solid var(--accent);
-            padding: 1rem 1.4rem;
-            margin: 1.2rem 0 0;
-            border-radius: 0 16px 16px 0;
-            font-size: 0.9rem;
-            color: #5A3A2E;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-            font-weight: 500;
-        }
-
+        .insight-box { background: linear-gradient(135deg, #FFF8F5 0%, #FFFFFF 100%); border-left: 4px solid var(--accent); padding: 1rem 1.4rem; margin: 1.2rem 0 0; border-radius: 0 16px 16px 0; font-size: 0.9rem; color: #5A3A2E; font-weight: 500; }
         .insight-box i { color: var(--accent); margin-right: 0.5rem; width: 1.25rem; }
-        .insight-box-blue {
-            background: linear-gradient(135deg, #F2F8FF 0%, #FFFFFF 100%);
-            border-left-color: var(--accent-blue);
-            color: #2A4A6E;
-        }
+        .insight-box-blue { background: linear-gradient(135deg, #F2F8FF 0%, #FFFFFF 100%); border-left-color: var(--accent-blue); color: #2A4A6E; }
         .insight-box-blue i { color: var(--accent-blue); }
-        .insight-box-green {
-            background: linear-gradient(135deg, #F1FCF5 0%, #FFFFFF 100%);
-            border-left-color: var(--accent-green);
-            color: #1E4A2E;
-        }
+        .insight-box-green { background: linear-gradient(135deg, #F1FCF5 0%, #FFFFFF 100%); border-left-color: var(--accent-green); color: #1E4A2E; }
         .insight-box-green i { color: var(--accent-green); }
 
-        /* Loading State */
-        .loading {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 340px;
-            color: var(--text-secondary);
-            flex-direction: column;
-            gap: 0.75rem;
-            background: var(--card-bg);
-            border-radius: 20px;
-        }
-
-        .loading i {
-            animation: spin 1s linear infinite;
-            font-size: 1.8rem;
-            opacity: 0.6;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+        /* Loading */
+        .loading { display: flex; align-items: center; justify-content: center; min-height: 340px; color: var(--text-secondary); flex-direction: column; gap: 0.75rem; background: var(--card-bg); border-radius: 20px; }
+        .loading i { animation: spin 1s linear infinite; font-size: 1.8rem; opacity: 0.6; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
         /* Footer */
-        .footer {
-            background: var(--primary);
-            color: #CBD5E1;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
-            border-radius: 32px 32px 0 0;
-        }
+        .footer { background: var(--primary); color: #CBD5E1; padding: 3rem 2rem; margin-top: 4rem; border-radius: 32px 32px 0 0; }
+        .footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
+        .footer h3, .footer h4 { color: white; border-left: none; padding-left: 0; margin-bottom: 0.75rem; }
+        hr { margin: 2rem 0; border: none; height: 1px; background: rgba(255,255,255,0.08); }
 
-        .footer a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-        }
+        /* Key Cards */
+        .key-card { background: var(--card-bg); border-radius: 24px; padding: 1.8rem; text-align: center; transition: all 0.25s; height: 100%; border: 1px solid var(--border); }
+        .key-card i { font-size: 2.4rem; margin-bottom: 1rem; display: inline-block; }
 
-        .footer h3, .footer h4 {
-            color: white;
-            border-left: none;
-            padding-left: 0;
-            margin-bottom: 0.75rem;
-        }
+        /* Back to Top */
+        #backToTop { position: fixed; bottom: 2rem; right: 2rem; width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: white; border: none; cursor: pointer; opacity: 0; transition: opacity 0.3s, transform 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; font-size: 1.2rem; }
+        #backToTop:hover { transform: scale(1.1); }
+        #backToTop.visible { opacity: 1; }
 
-        hr {
-            margin: 2rem 0;
-            border: none;
-            height: 1px;
-            background: rgba(255,255,255,0.08);
-        }
-
-        /* Key findings cards */
-        .key-card {
-            background: var(--card-bg);
-            border-radius: 24px;
-            padding: 1.8rem;
-            text-align: center;
-            transition: all 0.25s;
-            height: 100%;
-            border: 1px solid var(--border);
-        }
-
-        .key-card i {
-            font-size: 2.4rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-
-        /* Back to Top Button */
-        #backToTop {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--accent);
-            color: white;
-            border: none;
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s, transform 0.2s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1000;
-            font-size: 1.2rem;
-        }
-        
-        #backToTop:hover {
-            transform: scale(1.1);
-        }
-        
-        #backToTop.visible {
-            opacity: 1;
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: #2C3E50;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 40px;
-            font-size: 0.9rem;
-            z-index: 1001;
-            transition: transform 0.3s ease;
-            pointer-events: none;
-        }
-        
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #EFF3F6; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb { background: #BDC4CB; border-radius: 10px; }
+        /* Toast */
+        .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: #2C3E50; color: white; padding: 0.75rem 1.5rem; border-radius: 40px; font-size: 0.9rem; z-index: 1001; transition: transform 0.3s ease; pointer-events: none; }
+        .toast.show { transform: translateX(-50%) translateY(0); }
 
         /* Responsive */
         @media (max-width: 768px) {
             .container { padding: 0 1.2rem; }
             .viz-card { padding: 1.2rem; margin-bottom: 1.2rem; }
             .hero { padding: 2rem 1rem 2rem; }
-            .controls { gap: 0.4rem; }
             .ctrl-btn { padding: 0.4rem 0.9rem; font-size: 0.75rem; }
             #backToTop { bottom: 1rem; right: 1rem; width: 40px; height: 40px; }
         }
-
-        .pure-g {
-            margin: 0 -0.9rem;
-        }
-        .pure-g > [class*="pure-u"] {
-            padding: 0 0.9rem;
-        }
-        
-        /* Filter indicator */
-        .filter-indicator {
-            text-align: center;
-            margin-top: 0.5rem;
-            font-size: 0.8rem;
-            color: var(--accent);
-            display: none;
-        }
-        .filter-indicator.active {
-            display: block;
-        }
+        .pure-g { margin: 0 -0.9rem; }
+        .pure-g > [class*="pure-u"] { padding: 0 0.9rem; }
+        .filter-indicator { text-align: center; margin-top: 0.5rem; font-size: 0.8rem; color: var(--accent); display: none; }
+        .filter-indicator.active { display: block; }
     </style>
 </head>
 <body>
@@ -544,7 +215,7 @@
                 <div class="viz-card">
                     <h3><i class="fas fa-map-marked-alt" style="color: var(--accent-green);"></i> Dominant Sport by State (Real Boundaries)</h3>
                     <div id="choropleth-map" class="viz-container"><div class="loading"><i class="fas fa-spinner"></i><span>Loading geographic data...</span></div></div>
-                    <div class="viz-caption"><i class="fas fa-mouse-pointer"></i> Hover for participant numbers. Uses real Australian state boundaries.</div>
+                    <div class="viz-caption"><i class="fas fa-mouse-pointer"></i> Hover for participant numbers. Uses real Australian state boundaries from local GeoJSON.</div>
                 </div>
             </div>
             <div class="pure-u-1 pure-u-md-1-3">
@@ -685,6 +356,7 @@
                     <li>• Australian Bureau of Statistics</li>
                     <li>• AFL / Cricket Australia Annual Reports</li>
                     <li>• Sport Australia State of Play</li>
+                    <li>• Australian State Boundaries: GeoJSON (local /data/au-state.json)</li>
                 </ul>
             </div>
         </div>
@@ -700,11 +372,9 @@
 <div id="toast" class="toast"></div>
 
 <script>
-    // Store view instances for cross-filtering
     const viewInstances = {};
     let currentSportFilter = "all";
     
-    // Toast notification helper
     function showToast(message, isError = false) {
         const toast = document.getElementById('toast');
         toast.textContent = message;
@@ -713,7 +383,6 @@
         setTimeout(() => toast.classList.remove('show'), 3000);
     }
     
-    // Update filter indicator
     function updateFilterIndicator(sport) {
         const indicator = document.getElementById('filterIndicator');
         const filterSpan = document.getElementById('currentFilter');
@@ -725,12 +394,9 @@
         }
     }
     
-    // Apply sport filter to all filterable charts
     async function applySportFilter(sport) {
         currentSportFilter = sport;
         updateFilterIndicator(sport);
-        
-        // Update the grouped bar chart with sport filter
         if (viewInstances['grouped-bar']) {
             try {
                 await viewInstances['grouped-bar'].signal('sport_select', sport === 'all' ? 'AFL' : sport).runAsync();
@@ -738,7 +404,6 @@
         }
     }
     
-    // Centralised Vega-Lite configuration with animations
     const CHART_CONFIG = {
         axis: { labelFontSize: 11, titleFontSize: 12, labelAngle: 0 },
         legend: { titleFontSize: 11, labelFontSize: 10 },
@@ -746,37 +411,24 @@
         mark: { cornerRadius: 4 }
     };
     
-    // ========== CHART SPECIFICATIONS ==========
-    
-    // Grouped Bar with sport filter parameter
+    // Grouped Bar with sport filter
     const groupedBarSpec = {
         $schema: "https://vega.github.io/schema/vega-lite/v5.json",
         title: "Participation by Age Group and Gender",
         width: "container", height: 400,
         params: [{
-            name: "sport_select",
-            value: "AFL",
-            bind: {
-                input: "select",
-                options: ["AFL", "Cricket", "Soccer", "Basketball", "Tennis", "Netball", "Rugby League"],
-                name: "Select Sport: "
-            }
+            name: "sport_select", value: "AFL",
+            bind: { input: "select", options: ["AFL", "Cricket", "Soccer", "Basketball", "Tennis", "Netball", "Rugby League"], name: "Select Sport: " }
         }],
         data: { url: "data/age_gender_sport_matrix.csv", format: { type: "csv" } },
-        transform: [
-            { filter: { field: "sport", equal: { expr: "sport_select" } } }
-        ],
+        transform: [{ filter: { field: "sport", equal: { expr: "sport_select" } } }],
         mark: { type: "bar", size: 20 },
         encoding: {
             x: { field: "age_group", type: "ordinal", title: "Age Group", sort: ["5-14", "15-24", "25-34", "35-44", "45-54", "55+"], axis: { labelAngle: 0 } },
             y: { field: "participation_index", type: "quantitative", title: "Participation Rate (%)", scale: { domain: [0, 90], nice: false } },
             xOffset: { field: "gender", type: "nominal" },
             color: { field: "gender", type: "nominal", title: "Gender", scale: { domain: ["Male", "Female"], range: ["#3498DB", "#E74C3C"] } },
-            tooltip: [
-                { field: "age_group", title: "Age Group" },
-                { field: "gender", title: "Gender" },
-                { field: "participation_index", title: "Rate (%)", format: ".1f" }
-            ]
+            tooltip: [{ field: "age_group" }, { field: "gender" }, { field: "participation_index", title: "Rate (%)", format: ".1f" }]
         },
         config: CHART_CONFIG
     };
@@ -835,21 +487,21 @@
         config: CHART_CONFIG
     };
     
-    // Choropleth Map
+    // Choropleth Map - using LOCAL au-state.json file
     const choroplethMapSpec = {
         $schema: "https://vega.github.io/schema/vega-lite/v5.json",
         title: "Dominant Sport by State",
         width: "container", height: 450,
         projection: { type: "mercator", center: [134, -28], scale: 450 },
-        data: { url: "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australian-states.json", format: { type: "json", property: "features" } },
+        data: { url: "data/au-state.json", format: { type: "json", property: "features" } },
         transform: [{
-            lookup: "properties.STATE_NAME",
+            lookup: "properties.name",
             from: { data: { url: "data/dominant_sport_by_state.csv", format: { type: "csv" } }, key: "state", fields: ["sport", "participants"] }
         }, { calculate: "datum.sport==null?'No Data':datum.sport", as: "sport_display" }],
         mark: { type: "geoshape", stroke: "white", strokeWidth: 1.5 },
         encoding: {
             color: { field: "sport_display", type: "nominal", title: "Dominant Sport", scale: { domain: ["AFL", "Rugby League", "Rugby Union", "No Data"], range: ["#D32F2F", "#388E3C", "#1976D2", "#CCCCCC"] } },
-            tooltip: [{ field: "properties.STATE_NAME", title: "State" }, { field: "sport_display", title: "Sport" }, { field: "participants", title: "Participants", format: "," }]
+            tooltip: [{ field: "properties.name", title: "State" }, { field: "sport_display", title: "Sport" }, { field: "participants", title: "Participants", format: "," }]
         },
         config: { view: { stroke: null } }
     };
@@ -1007,7 +659,7 @@
         config: CHART_CONFIG
     };
     
-    // ========== RENDER ALL CHARTS ==========
+    // Render all charts
     async function renderAllCharts() {
         const chartsToRender = [
             { id: '#heatmap-male', spec: heatmapMaleSpec, key: 'heatmap-male' },
@@ -1029,26 +681,23 @@
         for (const chart of chartsToRender) {
             try {
                 const result = await vegaEmbed(chart.id, chart.spec, { actions: false });
-                if (result && result.view) {
-                    viewInstances[chart.key] = result.view;
-                }
+                if (result && result.view) viewInstances[chart.key] = result.view;
                 console.log(`✓ Rendered: ${chart.id}`);
             } catch (err) {
                 console.error(`✗ Failed to render ${chart.id}:`, err);
                 const container = document.querySelector(chart.id);
                 if (container) {
-                    container.innerHTML = `<div class="loading" style="color: #e74c3c;"><i class="fas fa-exclamation-triangle"></i><span>Chart failed to load</span><small style="margin-top: 8px;">Please check data files or refresh</small></div>`;
+                    container.innerHTML = `<div class="loading" style="color: #e74c3c;"><i class="fas fa-exclamation-triangle"></i><span>Chart failed to load</span><small style="margin-top: 8px;">Please check data files</small></div>`;
                 }
                 showToast(`Failed to load ${chart.id}`, true);
             }
         }
     }
     
-    // ========== INTERACTIVITY ==========
+    // Event handlers
     window.addEventListener('load', () => {
         renderAllCharts();
         
-        // Sport filter buttons
         document.querySelectorAll('.ctrl-btn[data-sport]').forEach(btn => {
             btn.addEventListener('click', async function() {
                 document.querySelectorAll('.ctrl-btn[data-sport]').forEach(b => b.classList.remove('active'));
@@ -1059,7 +708,6 @@
             });
         });
         
-        // Export functionality
         const exportBtn = document.getElementById('exportBtn');
         if (exportBtn) {
             exportBtn.addEventListener('click', async () => {
@@ -1067,12 +715,7 @@
                 if (!element) return;
                 showToast('Generating image...');
                 try {
-                    const canvas = await html2canvas(element, {
-                        scale: 2,
-                        backgroundColor: getComputedStyle(document.body).backgroundColor,
-                        logging: false,
-                        useCORS: true
-                    });
+                    const canvas = await html2canvas(element, { scale: 2, backgroundColor: getComputedStyle(document.body).backgroundColor, logging: false, useCORS: true });
                     const link = document.createElement('a');
                     link.download = `australian-sports-insights-${new Date().toISOString().slice(0,19)}.png`;
                     link.href = canvas.toDataURL();
@@ -1085,18 +728,12 @@
             });
         }
         
-        // Back to top button
         const backBtn = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                backBtn.classList.add('visible');
-            } else {
-                backBtn.classList.remove('visible');
-            }
+            if (window.scrollY > 500) backBtn.classList.add('visible');
+            else backBtn.classList.remove('visible');
         });
-        backBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     });
 </script>
 </body>
