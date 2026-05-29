@@ -825,6 +825,11 @@
                 { field: "medals_per_10m", title: "Medals / $10M", format: ".2f" }
             ]
         },
+        layer: [
+            { mark: { type: "bar" }, encoding: { /* bar encoding */ } },
+            { mark: { type: "rule", color: "red", strokeDash: [5, 5] }, 
+            encoding: { x: { datum: 2.5, type: "quantitative" } } } 
+        ]
         config: CHART_CONFIG
     };
 
@@ -900,7 +905,7 @@
                     }
                 });
         });
-
+       
         // Sport filter controls (future enhancement placeholder)
         document.querySelectorAll('.ctrl-btn').forEach(btn => {
             btn.addEventListener('click', function() {
