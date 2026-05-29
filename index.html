@@ -356,7 +356,7 @@
                     <li>• Australian Bureau of Statistics</li>
                     <li>• AFL / Cricket Australia Annual Reports</li>
                     <li>• Sport Australia State of Play</li>
-                    <li>• Australian State Boundaries: GeoJSON (local /data/states.geojson)</li>
+                    <li>• Australian State Boundaries: GeoJSON (local /data/au-state.json)</li>
                 </ul>
             </div>
         </div>
@@ -487,21 +487,21 @@
         config: CHART_CONFIG
     };
     
-    // Choropleth Map - using LOCAL states.geojson file
+    // Choropleth Map - using LOCAL au-state.json file
     const choroplethMapSpec = {
         $schema: "https://vega.github.io/schema/vega-lite/v5.json",
         title: "Dominant Sport by State",
         width: "container", height: 450,
-        projection: { type: "mercator", center: [134, -28], scale: 500 },
-        data: { url: "data/states.geojson", format: { type: "json", property: "features" } },
+        projection: { type: "mercator", center: [134, -28], scale: 450 },
+        data: { url: "data/au-state.json", format: { type: "json", property: "features" } },
         transform: [{
-            lookup: "properties.STATE_NAME",
+            lookup: "properties.name",
             from: { data: { url: "data/dominant_sport_by_state.csv", format: { type: "csv" } }, key: "state", fields: ["sport", "participants"] }
         }, { calculate: "datum.sport==null?'No Data':datum.sport", as: "sport_display" }],
         mark: { type: "geoshape", stroke: "white", strokeWidth: 1.5 },
         encoding: {
             color: { field: "sport_display", type: "nominal", title: "Dominant Sport", scale: { domain: ["AFL", "Rugby League", "Rugby Union", "No Data"], range: ["#D32F2F", "#388E3C", "#1976D2", "#CCCCCC"] } },
-            tooltip: [{ field: "properties.STATE_NAME", title: "State" }, { field: "sport_display", title: "Sport" }, { field: "participants", title: "Participants", format: "," }]
+            tooltip: [{ field: "properties.name", title: "State" }, { field: "sport_display", title: "Sport" }, { field: "participants", title: "Participants", format: "," }]
         },
         config: { view: { stroke: null } }
     };
